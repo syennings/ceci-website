@@ -1,4 +1,4 @@
-import { works } from "../../../lib/data.js";
+import { works } from "@/public/data";
 
 export default function handler(request, response) {
   console.log("request: ", request.query);
