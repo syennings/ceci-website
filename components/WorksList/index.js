@@ -17,8 +17,8 @@ export default function WorkList() {
     <>
       <ul>
         {data.map((work) => (
-          <li key={work.id}>
-            <Link href={`/works/${work.id}`}> {work.title} </Link>
+          <li key={work._id}>
+            <Link href={`/works/${work._id}`}> {work.title} </Link>
           </li>
         ))}
       </ul>
