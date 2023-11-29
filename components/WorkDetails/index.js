@@ -21,10 +21,19 @@ export default function WorkDetails() {
   return (
     <>
       <small>ID: {id}</small>
-      <h1>{data.title} </h1>
-      <h1>{data.publisher} </h1>
+      <p>{data.title} </p>
+      <p>{data.publisher} </p>
+      <p>{data.editors} </p>
+      <p>{data.school}</p>
       <Image
-        src={data.image}
+        src={data.image1}
+        alt={data.title}
+        width={300}
+        height={200}
+        layout="responsive"
+      />
+      <Image
+        src={data.image2}
         alt={data.title}
         width={300}
         height={200}

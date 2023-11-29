@@ -7,7 +7,8 @@ export const works = [
     dimensions: "230 × 280 mm",
     pages: 272,
     publisher: "RM Editorial",
-    image: "/inhalt1-02.png",
+    image1: "/minerva1.png",
+    image2: "/minerva2.png",
   },
   {
     id: "2",
