@@ -2,12 +2,14 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function WorkDetails() {
   const router = useRouter();
   const { id } = router.query;
 
   const { data, isLoading } = useSWR(`/api/works/${id}`);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -18,6 +20,26 @@ export default function WorkDetails() {
   }
 
   console.log("data for id", data);
+
+  function handleClickNext() {
+    if (data) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.images.length);
+    }
+  }
+
+  function handClickPrevious() {
+    if (data) {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? data.images.length - 1 : prevIndex - 1
+      );
+    }
+  }
+  const currentImage = data.images[currentImageIndex];
+
+  function getImageCounter() {
+    return `${currentImageIndex + 1}/${data.images.length}`;
+  }
+
   return (
     <>
       <small>ID: {id}</small>
@@ -25,20 +47,18 @@ export default function WorkDetails() {
       <p>{data.publisher} </p>
       <p>{data.editors} </p>
       <p>{data.school}</p>
+
+      <p> {getImageCounter()} </p>
       <Image
-        src={data.image1}
+        src={currentImage}
         alt={data.title}
         width={300}
         height={200}
-        layout="responsive"
+        objectFit="cover"
+        onClick={handleClickNext}
       />
-      <Image
-        src={data.image2}
-        alt={data.title}
-        width={300}
-        height={200}
-        layout="responsive"
-      />
+      <button onClick={handClickPrevious}>&lt; Previous</button>
+
       <Link href="/works">Back to all</Link>
     </>
   );
