@@ -20,11 +20,11 @@ export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
   if (request.method === "GET") {
-    const work = await Work.findbyId(id);
+    const work = await Work.findById(id);
 
     if (!work) {
       response.status(404).json({ status: "NOT WORKINGGGG" });
     }
-    response.status(200).json({ work });
+    response.status(200).json(work);
   }
 }

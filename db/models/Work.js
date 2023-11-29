@@ -14,6 +14,7 @@ const workSchema = new Schema({
   copies: { type: Number },
   projectType: { type: String },
   school: { type: String },
+  images: { type: [String] },
 });
 
 const Work = mongoose.models.Work || mongoose.model("Work", workSchema);

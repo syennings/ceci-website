@@ -10,6 +10,7 @@ export default function WorkDetails() {
 
   const { data, isLoading } = useSWR(`/api/works/${id}`);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  console.log("photodataaaa???", data);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -35,6 +36,8 @@ export default function WorkDetails() {
     }
   }
   const currentImage = data.images[currentImageIndex];
+  console.log("images?!?!?!?!", data.images);
+  console.log("currentImage", currentImage);
 
   function getImageCounter() {
     return `${currentImageIndex + 1}/${data.images.length}`;
@@ -54,7 +57,6 @@ export default function WorkDetails() {
         alt={data.title}
         width={300}
         height={200}
-        objectFit="cover"
         onClick={handleClickNext}
       />
       <button onClick={handClickPrevious}>&lt; Previous</button>
