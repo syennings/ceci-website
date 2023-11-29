@@ -7,6 +7,7 @@ export const works = [
     dimensions: "230 × 280 mm",
     pages: 272,
     publisher: "RM Editorial",
+    image: "/inhalt1-02.png",
   },
   {
     id: "2",
