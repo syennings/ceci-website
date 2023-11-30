@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Minerva Cuevas",
+    "editors": "Melanie Roumiguière, Minerva Cuevas, eds.",
+    "year": 2023,
+    "dimensions": "230 × 280 mm",
+    "pages": 272,
+    "publisher": "RM Editorial",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "minerva-cuevas"
+  },
+  {
+    "title": "10 Years of Kinderhook & Caracas",
+    "editors": "Christopher Kline, Sol Calero, eds.",
+    "year": 2023,
+    "dimensions": "165 × 215 mm",
+    "pages": 384,
+    "publisher": "BOM DIA books",
+    "collaborator": "Santiago da Silva",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "10-years-of-kinderhook-and-caracas"
+  },
+  {
+    "title": "What The Mine Gives, The Mine Takes",
+    "editors": "Ana Alenso, ed.",
+    "year": 2023,
+    "dimensions": "205 × 270 mm",
+    "pages": 231,
+    "publisher": "BOM DIA books",
+    "collaborator": "Santiago da Silva",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "what-the-mine-gives-the-mine-takes"
+  },
+  {
+    "title": "Evelyn Taocheng Wang: I. M. Personally",
+    "editors": "Eva Birkenstock, ed.",
+    "year": 2022,
+    "dimensions": "230 × 280 mm",
+    "pages": 500,
+    "collaborator": "Santiago da Silva",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "evelyn-taocheng-wang-i-m-personally"
+  },
+  {
+    "title": "All for one One for all",
+    "editors": "Five performance scores by Zoncy Heavenly",
+    "year": 2023,
+    "dimensions": "210 × 148 mm",
+    "pages": 16,
+    "publisher": "Common Ground at daadgalerie",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "all-for-one-one-for-all"
+  },
+  {
+    "title": "Rosemary Mayer: Ways of Attaching",
+    "editors": "Eva Birkenstock, Laura McLean-Ferris, Robert Leckie, Stephanie Weber, eds.",
+    "year": 2021,
+    "dimensions": "140 × 200 mm",
+    "pages": 290,
+    "publishers": [
+      "Lenbachhaus",
+      "Ludwig Forum",
+      "Spike Island",
+      "Swiss Institute",
+      "König"
+    ],
+    "collaborator": "Santiago da Silva",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "rosemary-mayer-ways-of-attaching"
+  },
+  {
+    "title": "The Youngest Day",
+    "editors": "Mathew Hale ed.",
+    "year": 2022,
+    "dimensions": "350 × 510 mm",
+    "pages": 20,
+    "publisher": "X Artists’ Books",
+    "collaborator": "Santiago da Silva",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "the-youngest-day"
+  },
+  {
+    "title": "Open Air Kino",
+    "editors": "Kino im Blauen Salon. Karlsruhe, DE",
+    "year": 2022,
+    "collaborator": "Mona Mayer",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "open-air-kino"
+  },
+  {
+    "title": "Le nœud de Prusik",
+    "editors": "Émilie Notéris",
+    "year": 2021,
+    "dimensions": "125 × 236 mm",
+    "pages": 68,
+    "copies": 2,
+    "publishers": [
+      "CCN2 de Grenoble",
+      "le Pacifique",
+      "le Magasin des Horizons à Grenoble, with extrapole"
+    ],
+    "collaborator": "Roman Seban",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "le-nœud-de-prusik"
+  },
+  {
+    "title": "Là où se perdent les objets sans terre",
+    "editors": "Ana Cecilia Breña",
+    "year": 2020,
+    "dimensions": "255 × 350 mm",
+    "pages": 52,
+    "projectType": "Diploma Project’s Publication",
+    "school": "École Nationale supérieure des Arts Décoratifs",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "la-ou-se-perdent-les-objets-sans-terre"
+  },
+  {
+    "title": "La Casa Cueva",
+    "projectType": "Typeface design for an unpublished issue of SUR Magazine",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "la-casa-cueva-typeface-design-for-sur-magazine"
+  },
+  {
+    "title": "Détours dans des paysages excentrés",
+    "author": "Ana Cecilia Breña",
+    "year": 2019,
+    "dimensions": "175 × 232 mm",
+    "pages": 67,
+    "projectType": "Masters Thesis",
+    "school": "École Nationale supérieure des Arts Décoratifs",
+    "images": [
+      "https://dummyimage.com/600x400/000/fff",
+      "https://dummyimage.com/600x400/000/fff"
+    ],
+    "slug": "detours-dans-des-paysages-excentres"
+  }
+]

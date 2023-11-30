@@ -6,11 +6,12 @@ import { useState } from "react";
 
 export default function WorkDetails() {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
 
-  const { data, isLoading } = useSWR(`/api/works/${id}`);
+  const { data, isLoading } = useSWR(`/api/works/${slug}`);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  console.log("photodataaaa???", data);
+  console.log("where is my data????", data);
+  console.log("slug?????", slug);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -19,8 +20,6 @@ export default function WorkDetails() {
   if (!data) {
     return <p>Data not found</p>;
   }
-
-  console.log("data for id", data);
 
   function handleClickNext() {
     if (data) {
@@ -45,7 +44,7 @@ export default function WorkDetails() {
 
   return (
     <>
-      <small>ID: {id}</small>
+      <small>ID: {data._id}</small>
       <p>{data.title} </p>
       <p>{data.publisher} </p>
       <p>{data.editors} </p>
