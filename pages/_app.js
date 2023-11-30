@@ -7,9 +7,9 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Header />
-      <GlobalStyle />
       <SWRConfig value={{ fetcher }}>
+        <Header />
+        <GlobalStyle />
         <Component {...pageProps} />
       </SWRConfig>
     </>
