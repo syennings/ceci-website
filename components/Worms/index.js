@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Draggable from "react-draggable";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function WormPicture({ desiredWorm }) {
   const { data, isLoading } = useSWR(`/api/worms/`);
@@ -46,8 +47,7 @@ export default function WormPicture({ desiredWorm }) {
       setIsDragging(false);
     } else {
       const randomWork = getRandomWork();
-      // Handle the click action, for example, redirect to the random work page
-      window.location.href = `/works/${randomWork.slug}`;
+      router.push(`/works/${randomWork.slug}`);
     }
   };
 

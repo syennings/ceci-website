@@ -25,7 +25,7 @@ export default function CreateWorm() {
       <Link href="/" passHref legacyBehavior>
         back
       </Link>
-      <WormForm onSubmit={addPlace} />
+      <WormForm onSubmit={addPlace}  />
     </>
   );
 }
