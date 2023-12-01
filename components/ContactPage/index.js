@@ -1,4 +1,5 @@
 import WormForm from "../WormForm";
+import WormPicture from "../Worms";
 
 export default function ContactPage() {
   async function addWorm(worm) {
@@ -23,6 +24,8 @@ export default function ContactPage() {
           Email: <a href="mailto:brena.ana@gmail.com">brena.ana@gmail.com</a>
         </p>
         <p>Phone: +49 177 4577 689</p>
+
+        <WormPicture desiredWorm={"worm1"} />
         <WormForm onSubmit={addWorm} />
       </div>
     </>

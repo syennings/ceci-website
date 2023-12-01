@@ -3,7 +3,7 @@ export default function WormForm({ onSubmit }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    // Call the onSubmit function from the parent component with the form data
+
     onSubmit(data);
   }
 

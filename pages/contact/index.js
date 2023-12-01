@@ -1,6 +1,7 @@
 import Link from "next/link.js";
 import { useRouter } from "next/router";
 import WormForm from "@/components/WormForm/index.js";
+import WormPicture from "@/components/Worms";
 
 export default function CreateWorm() {
   const router = useRouter();
@@ -21,11 +22,7 @@ export default function CreateWorm() {
 
   return (
     <>
-      <h2 id="add-place">Add Place</h2>
-      <Link href="/" passHref legacyBehavior>
-        back
-      </Link>
-      <WormForm onSubmit={addPlace}  />
+      <WormForm onSubmit={addPlace} />
     </>
   );
 }
