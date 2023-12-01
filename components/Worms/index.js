@@ -34,23 +34,16 @@ export default function WormPicture({ desiredWorm }) {
 
   const randomWork = getRandomWork();
 
-  const handleImageClick = () => {
-    router.push(`/works/${randomWork.slug}`);
-  };
-
   return (
     <>
-      {/* <Link href={`/works/${randomWork.slug}`}> */}
-      <Draggable>
+      <Link href={`/works/${randomWork.slug}`}>
         <Image
           src={selectedWorm.url}
           alt={selectedWorm.label}
           width={300}
           height={200}
-          onClick={handleImageClick}
         />
-      </Draggable>
-      {/* </Link> */}
+      </Link>
     </>
   );
 }
