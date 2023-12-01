@@ -5,7 +5,7 @@ import Draggable from "react-draggable";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function WormPicture({ desiredWorm }) {
+export default function WormPicture({ selectedWorm }) {
   const { data, isLoading } = useSWR(`/api/worms/`);
   const { data: dataWorks, isLoading: isLoadingWorks } = useSWR(`/api/works/`);
 
@@ -22,11 +22,6 @@ export default function WormPicture({ desiredWorm }) {
     return <p>Data not found</p>;
   }
 
-  const selectedWorm = data.find((worm) => worm.label === desiredWorm);
-  if (!selectedWorm) {
-    return <p>Invalid Worm</p>;
-  }
-
   const getRandomWork = () => {
     const randomArtIndex = Math.floor(Math.random() * dataWorks.length);
     return dataWorks[randomArtIndex];
@@ -36,14 +31,18 @@ export default function WormPicture({ desiredWorm }) {
 
   return (
     <>
-      <Link href={`/works/${randomWork.slug}`}>
-        <Image
-          src={selectedWorm.url}
-          alt={selectedWorm.label}
-          width={300}
-          height={200}
-        />
-      </Link>
+      <Draggable>
+        <div style={{ cursor: "grab" }}>
+          <Link href={`/works/${randomWork.slug}`}>
+            <Image
+              src={selectedWorm.url}
+              alt={selectedWorm.label}
+              width={300}
+              height={200}
+            />
+          </Link>
+        </div>
+      </Draggable>
     </>
   );
 }
