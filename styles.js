@@ -9,6 +9,9 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: 'CMU Typewriter Text', monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
   }
 `;
