@@ -8,8 +8,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <SWRConfig value={{ fetcher }}>
-        <Header />
         <GlobalStyle />
+        <Header />
         <Component {...pageProps} />
       </SWRConfig>
     </>

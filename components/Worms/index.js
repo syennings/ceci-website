@@ -1,10 +1,14 @@
 import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
+import Draggable from "react-draggable";
+import { useState } from "react";
 
 export default function WormPicture({ desiredWorm }) {
   const { data, isLoading } = useSWR(`/api/worms/`);
   const { data: dataWorks, isLoading: isLoadingWorks } = useSWR(`/api/works/`);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
 
   console.log("data of worms", data);
   console.log("art data?!?!?!", dataWorks);
@@ -29,15 +33,37 @@ export default function WormPicture({ desiredWorm }) {
 
   const randomWork = getRandomWork();
 
+  const handleDrag = (e, ui) => {
+    if (!isDragging) {
+      setIsDragging(true);
+    }
+    const { x, y } = position;
+    setPosition({ x: x + ui.deltaX, y: y + ui.deltaY });
+  };
+
+  const handleClick = () => {
+    if (isDragging) {
+      setIsDragging(false);
+    } else {
+      const randomWork = getRandomWork();
+      // Handle the click action, for example, redirect to the random work page
+      window.location.href = `/works/${randomWork.slug}`;
+    }
+  };
+
   return (
     <>
       <Link href={`/works/${randomWork.slug}`}>
-        <Image
-          src={selectedWorm.url}
-          alt={selectedWorm.label}
-          width={300}
-          height={200}
-        />
+        <Draggable position={position} onDrag={handleDrag}>
+          <div onClick={handleClick}>
+            <Image
+              src={selectedWorm.url}
+              alt={selectedWorm.label}
+              width={300}
+              height={200}
+            />
+          </div>
+        </Draggable>
       </Link>
     </>
   );
