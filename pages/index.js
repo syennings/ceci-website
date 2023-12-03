@@ -1,5 +1,6 @@
 import WormPicture from "@/components/Worms";
 import useSWR from "swr";
+import styles from "./homepage.module.css";
 
 export default function HomePage() {
   const { data, isLoading } = useSWR(`/api/worms/`);
@@ -20,9 +21,23 @@ export default function HomePage() {
 
   return (
     <>
-      <h2> Welcome To Cecilias website</h2>
-
-      <WormPicture selectedWorm={selectedWorm} />
+      <div className={styles.homePage}>
+        <h2 className={styles.title}> Welcome To Cecilias website</h2>
+        <div className={styles.contentWrapper}>
+          <WormPicture selectedWorm={selectedWorm}>click me!</WormPicture>
+          <h3 className={styles.text}>
+            Ana Breña Cecilia is a Mexican designer currently working with{" "}
+            <a href="https://www.santiagodasilva.com/" target="_blank">
+              Studio Santiago de Silva
+            </a>{" "}
+            in{" "}
+            <a href="https://maps.app.goo.gl/xLqE6SFSnQnYHpVr8" target="_blank">
+              Berlin.
+            </a>
+            <p>Ceci is basically, Berlins biggest underground designer.</p>
+          </h3>
+        </div>
+      </div>
     </>
   );
 }

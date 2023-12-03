@@ -1,0 +1,35 @@
+/* styles.css */
+
+/* Basic styling for the navigation bar */
+.navbar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: #419773;
+  padding: 10 px;
+  position: fixed;
+  width: 100%;
+  font-size: 24px;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* Style for the navigation links */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 30px;
+  font-weight: bold;
+}
+
+/* Change link color on hover */
+.navbar a:hover {
+  color: #eae106;
+  transform: translateY(-5px);
+}
+
+.image {
+  flex: 1;
+  margin-right: 20px;
+}
