@@ -1,0 +1,25 @@
+/* CreateWorm.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 0;
+  padding: 20px;
+}
+
+.imageGrid {
+  display: grid;
+  gap: 100px;
+  padding: 10px;
+}
+
+/* Default to a single column on smaller screens */
+@media (min-width: 600px) {
+  .imageGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Add a max-height property to limit the number of rows */
+.imageGrid li {
+  overflow: hidden;
+}
