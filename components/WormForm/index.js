@@ -13,16 +13,16 @@ export default function WormForm({ onSubmit }) {
       <h2>Add A New Worm</h2>
 
       <div>
-        <label htmlFor="label">Worm Label:</label>
+        <label htmlFor="label">Name of Worm:</label>
         <input
           type="text"
           id="label"
           name="label"
-          placeholder="Enter worm label"
+          placeholder="Enter worm name"
         />
       </div>
       <div>
-        <label htmlFor="url">Image URL:</label>
+        <label htmlFor="url">Give me Your Worm URL:</label>
         <input type="text" id="url" name="url" placeholder="Enter image URL" />
       </div>
       <div>

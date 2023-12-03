@@ -1,0 +1,33 @@
+/* WorkDetails.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 70%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.imageContainer img:hover {
+  transform: scale(1.2); /* Add a zoom effect on hover */
+}
+
+.overlayText {
+  margin: 0px;
+
+  bottom: 10px;
+  right: 10px;
+  color: #e7dead;
+  font-size: 14px;
+  font-weight: bold;
+}
