@@ -1,6 +1,7 @@
 export default function WormForm({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
+    window.location.reload();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
@@ -9,7 +10,7 @@ export default function WormForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Worm Image</h2>
+      <h2>Add A New Worm</h2>
 
       <div>
         <label htmlFor="label">Worm Label:</label>

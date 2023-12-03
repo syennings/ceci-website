@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import WormForm from "@/components/WormForm/index.js";
 import WormPicture from "@/components/Worms";
 import useSWR from "swr";
+import ContactPage from "@/components/ContactPage";
+import styles from "./contact.module.css";
 
 export default function CreateWorm() {
   const router = useRouter();
@@ -31,8 +33,11 @@ export default function CreateWorm() {
 
   return (
     <>
-      <WormForm onSubmit={addPlace} />
-      <ul>
+      <div className={styles.container}>
+        <ContactPage /> <WormForm onSubmit={addPlace} />
+      </div>
+
+      <ul className={styles.imageGrid}>
         {data.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />

@@ -1,0 +1,24 @@
+/* WorkList.module.css */
+
+.workItem {
+  margin-bottom: 10px;
+}
+
+.preview {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+
+.workItem:hover .preview {
+  display: block;
+}
+
+.workItem:hover {
+  background-color: pink;
+}
+
+.workItem a {
+  color: purple;
+}

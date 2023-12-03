@@ -37,8 +37,8 @@ export default function WormPicture({ selectedWorm }) {
             <Image
               src={selectedWorm.url}
               alt={selectedWorm.label}
-              width={300}
-              height={200}
+              width={150}
+              height={80}
             />
           </Link>
         </div>
