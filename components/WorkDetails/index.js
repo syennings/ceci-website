@@ -54,11 +54,11 @@ export default function WorkDetails() {
       <Image
         src={currentImage}
         alt={data.title}
-        width={300}
-        height={200}
+        width={600}
+        height={300}
         onClick={handleClickNext}
       />
-      <button onClick={handClickPrevious}>&lt; Previous</button>
+      {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
 
       <Link href="/works">Back to all</Link>
     </>

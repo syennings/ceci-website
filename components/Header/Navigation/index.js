@@ -1,16 +1,17 @@
 import Link from "next/link";
+import styles from "./navigation.module.css";
 
 export function Navigation() {
   return (
-    <nav className="navbar">
+    <nav className={styles.navbar}>
       <Link href="/works" passHref>
-        <div className="works">Link To All Works</div>
+        <div className={styles.works}>Works</div>
       </Link>
       <Link href="/contact" passHref>
-        <div className="contact">Contact Page</div>
+        <div className={styles.contact}>Contact</div>
       </Link>
       <Link href="/info" passHref>
-        <div className="info">About me</div>
+        <div className={styles.info}>About</div>
       </Link>
     </nav>
   );
