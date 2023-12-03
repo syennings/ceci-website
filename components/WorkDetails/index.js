@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import styles from "./workdetails.module.css";
 
 export default function WorkDetails() {
   const router = useRouter();
@@ -44,23 +45,28 @@ export default function WorkDetails() {
 
   return (
     <>
-      <small>ID: {data._id}</small>
-      <p>{data.title} </p>
-      <p>{data.publisher} </p>
-      <p>{data.editors} </p>
-      <p>{data.school}</p>
+      <div className={styles.container}>
+        <div className={styles.overlayText}>
+          <small>ID: {data._id}</small>
+          <p>
+            {data.title}.{data.publisher}.{data.editors}.{data.school}.
+          </p>
+        </div>
 
-      <p> {getImageCounter()} </p>
-      <Image
-        src={currentImage}
-        alt={data.title}
-        width={600}
-        height={300}
-        onClick={handleClickNext}
-      />
-      {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
+        <p> {getImageCounter()} </p>
+        <div className={styles.imageContainer}>
+          <Image
+            src={currentImage}
+            alt={data.title}
+            width={400}
+            height={200}
+            onClick={handleClickNext}
+          />
+        </div>
+        {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
 
-      <Link href="/works">Back to all</Link>
+        <Link href="/works">Back to all</Link>
+      </div>
     </>
   );
 }

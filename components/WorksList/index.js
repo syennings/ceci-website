@@ -2,6 +2,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./worklist.module.css";
+import WormPicture from "../Worms";
 
 export default function WorkList() {
   const { data, isLoading } = useSWR("/api/works");
