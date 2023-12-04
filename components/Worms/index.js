@@ -2,7 +2,6 @@ import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
 import Draggable from "react-draggable";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function WormPicture({ selectedWorm }) {
@@ -29,19 +28,28 @@ export default function WormPicture({ selectedWorm }) {
 
   const randomWork = getRandomWork();
 
+  const handleFavoriteToggle = (wormId) => {
+    setFavoriteStatus((prevStatus) => ({
+      ...prevStatus,
+      [wormId]: !prevStatus[wormId],
+    }));
+  };
+
   return (
     <>
       <Draggable>
         <div style={{ cursor: "grab" }}>
-          <Link href={`/works/${randomWork.slug}`}>
-            <p> click me</p>
-          </Link>
+          <p> {selectedWorm.label}</p>
           <Image
             src={selectedWorm.url}
             alt={selectedWorm.label}
             width={150}
             height={80}
           />
+
+          <Link href={`/works/${randomWork.slug}`}>
+            <p> click me</p>
+          </Link>
         </div>
       </Draggable>
     </>
