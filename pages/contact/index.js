@@ -71,12 +71,10 @@ export default function CreateWorm() {
           Impressum | Datenschutz{" "}
         </Link>
       </div>
-      <div className={styles.containerForm}>
-        <WormForm onSubmit={addWorm} />
-      </div>
 
+      <h3> your favorite worms </h3>
       <ul className={styles.imageGrid}>
-        {data.map((worm) => (
+        {favoriteWorms.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />
             <button
@@ -96,9 +94,12 @@ export default function CreateWorm() {
           </li>
         ))}
       </ul>
-      <h3> favorite worms </h3>
+      <div className={styles.containerForm}>
+        <WormForm onSubmit={addWorm} />
+      </div>
+
       <ul className={styles.imageGrid}>
-        {favoriteWorms.map((worm) => (
+        {data.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />
             <button
