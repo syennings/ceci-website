@@ -17,10 +17,10 @@ export default function CreateWorm() {
     return <p>Data not found</p>;
   }
 
-  async function addPlace(place) {
+  async function addWorm(worm) {
     const response = await fetch("/api/worms", {
       method: "POST",
-      body: JSON.stringify(place),
+      body: JSON.stringify(worm),
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
@@ -31,6 +31,22 @@ export default function CreateWorm() {
     }
   }
 
+  async function handleDelete(id) {
+    const response = await fetch(`/api/worms/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.log("Error deleting worm. Status:", response.status);
+      return;
+    }
+
+    console.log("Worm deleted successfully");
+
+    router.push("/contact");
+    window.location.reload();
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -39,13 +55,18 @@ export default function CreateWorm() {
           Impressum | Datenschutz{" "}
         </Link>
 
-        <WormForm onSubmit={addPlace} />
+        <WormForm onSubmit={addWorm} />
       </div>
 
       <ul className={styles.imageGrid}>
         {data.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />
+            <button onClick={() => handleDelete(worm._id)}>
+              <span role="img" aria-label="A cross indicating deletion">
+                ❌
+              </span>
+            </button>
           </li>
         ))}
       </ul>

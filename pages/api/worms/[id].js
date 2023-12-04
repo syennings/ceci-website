@@ -14,4 +14,10 @@ export default async function handler(request, response) {
     }
     response.status(200).json(worm);
   }
+
+  if (request.method === "DELETE") {
+    await Worm.findByIdAndDelete(id);
+
+    response.status(200).json({ message: "Success!" });
+  }
 }
