@@ -28,13 +28,6 @@ export default function WormPicture({ selectedWorm }) {
 
   const randomWork = getRandomWork();
 
-  const handleFavoriteToggle = (wormId) => {
-    setFavoriteStatus((prevStatus) => ({
-      ...prevStatus,
-      [wormId]: !prevStatus[wormId],
-    }));
-  };
-
   return (
     <>
       <Draggable>

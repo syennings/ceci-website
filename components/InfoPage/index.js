@@ -1,7 +1,9 @@
-import { Navigation } from "../Header/Navigation";
-import HomeButton from "../Header/HomeButton.js";
+import { useRouter } from "next/router";
 
 export default function InfoPage() {
+  const router = useRouter();
+  const { favoritedWormIds } = router.query;
+
   return (
     <>
       <div className="contact-container">
@@ -22,6 +24,8 @@ export default function InfoPage() {
         <h3> Prints</h3>
         <li> installations 2022 Westwärts, installations 2022 Westwärts</li>
       </div>
+
+      <h3>Favorited Worms</h3>
     </>
   );
 }

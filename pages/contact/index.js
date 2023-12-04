@@ -10,6 +10,7 @@ import { useState } from "react";
 export default function CreateWorm() {
   const router = useRouter();
   const { data, isLoading } = useSWR(`/api/worms/`);
+  const [favoriteStatus, setFavoriteStatus] = useState({});
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -18,6 +19,13 @@ export default function CreateWorm() {
   if (!data) {
     return <p>Data not found</p>;
   }
+
+  const handleFavoriteToggle = (wormId) => {
+    setFavoriteStatus((prevStatus) => ({
+      ...prevStatus,
+      [wormId]: !prevStatus[wormId],
+    }));
+  };
 
   async function addWorm(worm) {
     const response = await fetch("/api/worms", {
@@ -72,6 +80,12 @@ export default function CreateWorm() {
               <span role="img" aria-label="A cross indicating deletion">
                 ❌
               </span>
+            </button>
+            <button
+              onClick={() => handleFavoriteToggle(worm._id)}
+              className={styles.likeButton}
+            >
+              {favoriteStatus[worm._id] ? "❤️" : "🤍"}
             </button>
           </li>
         ))}
