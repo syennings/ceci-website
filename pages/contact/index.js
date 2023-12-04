@@ -34,7 +34,12 @@ export default function CreateWorm() {
   return (
     <>
       <div className={styles.container}>
-        <ContactPage /> <WormForm onSubmit={addPlace} />
+        <ContactPage />
+        <Link href="./impressum" target="_blank">
+          Impressum | Datenschutz{" "}
+        </Link>
+
+        <WormForm onSubmit={addPlace} />
       </div>
 
       <ul className={styles.imageGrid}>
