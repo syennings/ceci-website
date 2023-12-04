@@ -49,12 +49,13 @@ export default function CreateWorm() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.containerContact}>
         <ContactPage />
         <Link href="./impressum" target="_blank">
           Impressum | Datenschutz{" "}
         </Link>
-
+      </div>
+      <div className={styles.containerForm}>
         <WormForm onSubmit={addWorm} />
       </div>
 
@@ -62,7 +63,10 @@ export default function CreateWorm() {
         {data.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />
-            <button onClick={() => handleDelete(worm._id)}>
+            <button
+              onClick={() => handleDelete(worm._id)}
+              className={styles.deleteButton}
+            >
               <span role="img" aria-label="A cross indicating deletion">
                 ❌
               </span>
