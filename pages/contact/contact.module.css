@@ -1,15 +1,27 @@
 /* CreateWorm.module.css */
 
-.container {
+.containerContact {
   max-width: 800px;
   margin: 0;
+  padding: 20px;
+  background-color: pink;
+}
+.containerForm {
+  max-width: 800px;
+  margin-top: 20px;
   padding: 20px;
 }
 
 .imageGrid {
   display: grid;
-  gap: 100px;
-  padding: 10px;
+  gap: 10px;
+  padding: 0px;
+  margin-bottom: 50px;
+}
+
+.deleteButton {
+  background: transparent;
+  border: none;
 }
 
 /* Default to a single column on smaller screens */
