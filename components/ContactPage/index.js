@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <>
       <div className="contact-container">
-        <h1>Contact Ana Breña Cecilia</h1>
+        <h1>Contact Me</h1>
         <p>
           Email: <a href="mailto:brena.ana@gmail.com">brena.ana@gmail.com</a>
         </p>

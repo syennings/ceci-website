@@ -6,7 +6,7 @@ export default async function handler(request, response) {
 
   console.log("hiiåi");
   if (request.method === "GET") {
-    const worms = await Worm.find();
+    const worms = await Worm.find().sort({ createdAt: -1 });
     console.log("wormswormswormsworms", worms);
     return response.status(200).json(worms);
   }
