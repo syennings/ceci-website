@@ -5,7 +5,6 @@ import WormPicture from "@/components/Worms";
 import useSWR from "swr";
 import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
-import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function CreateWorm() {

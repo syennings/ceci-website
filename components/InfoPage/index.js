@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 
 export default function InfoPage() {
   const router = useRouter();
-  const { favoritedWormIds } = router.query;
 
   return (
     <>
