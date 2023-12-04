@@ -2,9 +2,10 @@
 
 .containerContact {
   max-width: 800px;
-  margin: 0;
+  margin: 20px;
   padding: 20px;
   background-color: pink;
+  border-radius: 20px;
 }
 .containerForm {
   max-width: 800px;
@@ -20,6 +21,11 @@
 }
 
 .deleteButton {
+  background: transparent;
+  border: none;
+}
+
+.likeButton {
   background: transparent;
   border: none;
 }
