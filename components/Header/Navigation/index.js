@@ -3,7 +3,7 @@ import styles from "./navigation.module.css";
 import { useState } from "react";
 
 export function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
