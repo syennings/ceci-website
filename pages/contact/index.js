@@ -5,7 +5,6 @@ import WormPicture from "@/components/Worms";
 import useSWR from "swr";
 import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
-import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function CreateWorm() {
@@ -62,6 +61,7 @@ export default function CreateWorm() {
     router.push("/contact");
     window.location.reload();
   }
+  const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
 
   return (
     <>
@@ -77,6 +77,28 @@ export default function CreateWorm() {
 
       <ul className={styles.imageGrid}>
         {data.map((worm) => (
+          <li key={worm._id}>
+            <WormPicture selectedWorm={worm} />
+            <button
+              onClick={() => handleDelete(worm._id)}
+              className={styles.deleteButton}
+            >
+              <span role="img" aria-label="A cross indicating deletion">
+                ❌
+              </span>
+            </button>
+            <button
+              onClick={() => handleFavoriteToggle(worm._id)}
+              className={styles.likeButton}
+            >
+              {favoriteStatus[worm._id] ? "❤️" : "🤍"}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <h3> favorite worms </h3>
+      <ul className={styles.imageGrid}>
+        {favoriteWorms.map((worm) => (
           <li key={worm._id}>
             <WormPicture selectedWorm={worm} />
             <button

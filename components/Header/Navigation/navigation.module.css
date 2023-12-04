@@ -36,4 +36,45 @@
 .image {
   flex: 1;
   margin-right: 20px;
+  margin-left: 20px;
+}
+
+.menuToggle {
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  margin-left: 150px;
+}
+
+.menuItems a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Media query to hide the menu toggle on larger screens */
+@media screen and (min-width: 767px) {
+  .menuToggle {
+    display: fixed;
+    bottom: 50%;
+  }
+
+  .menuItems {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .menuItems {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+    margin-left: 5px;
+  }
 }
