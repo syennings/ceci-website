@@ -1,10 +1,11 @@
 export default function WormForm({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
+    // Get current timestamp
+
     window.location.reload();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-
     onSubmit(data);
   }
 
