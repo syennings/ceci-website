@@ -5,10 +5,12 @@ import WormPicture from "@/components/Worms";
 import useSWR from "swr";
 import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
+import { useState } from "react";
 
 export default function CreateWorm() {
   const router = useRouter();
   const { data, isLoading } = useSWR(`/api/worms/`);
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }

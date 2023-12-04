@@ -6,12 +6,22 @@ import WormPicture from "../Worms";
 
 export default function WorkList() {
   const { data, isLoading } = useSWR("/api/works");
+  const { data: wormData, isLoading: wormIsLoading } = useSWR(`/api/worms/`);
 
-  if (isLoading) {
+  if (isLoading || wormIsLoading) {
     return <h1> is LOADING BITCH </h1>;
   }
-  if (!data) {
+  if (!data || !wormData) {
     return <p>Data not found</p>;
+  }
+
+  console.log();
+  "wormData", wormData;
+
+  const desiredWorm = "worm3";
+  const selectedWorm = wormData.find((worm) => worm.label === desiredWorm);
+  if (!selectedWorm) {
+    return <p>Invalid Worm</p>;
   }
 
   console.log("dataaaaa", data);
@@ -41,6 +51,7 @@ export default function WorkList() {
           );
         })}
       </ul>
+      <WormPicture selectedWorm={selectedWorm}></WormPicture>
     </>
   );
 }

@@ -27,7 +27,7 @@ export default function HomePage() {
           Welcome to <Link href="/info">my</Link> website
         </h2>
         <div className={styles.contentWrapper}>
-          <WormPicture selectedWorm={selectedWorm}></WormPicture>
+          <WormPicture selectedWorm={selectedWorm}> </WormPicture>
           <h3 className={styles.text}>
             Ana Breña Cecilia is a Mexican designer currently working with{" "}
             <a href="https://www.santiagodasilva.com/" target="_blank">
