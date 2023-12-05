@@ -85,8 +85,12 @@ export default function CreateWorm() {
   }
 
   const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
+  const wormCount = data ? data.length : 0;
+
   return (
     <>
+      <p>Worm Count: {wormCount}</p>
+      {/* Display worm count in the contact form */}
       {isEditMode && (
         <WormForm wormData={wormData} handleEdit={handleEdit} isEditMode />
       )}
@@ -96,7 +100,6 @@ export default function CreateWorm() {
           Impressum | Datenschutz{" "}
         </Link>
       </div>
-
       <h3>
         {hasFavorites
           ? "Your Favorite Worms"
@@ -123,11 +126,9 @@ export default function CreateWorm() {
           </li>
         ))}
       </ul>
-
       <div className={styles.containerForm}>
         <WormForm addWorm={addWorm} />
       </div>
-
       <ul className={styles.imageGrid}>
         {data.map((worm) => (
           <li key={worm._id}>
