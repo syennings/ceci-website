@@ -42,6 +42,7 @@
 .menuToggle {
   cursor: pointer;
   z-index: 100;
+  color: #419773;
 }
 
 .menuItems {

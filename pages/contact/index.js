@@ -6,10 +6,13 @@ import useSWR from "swr";
 import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
 import useLocalStorageState from "use-local-storage-state";
+import { useState } from "react";
 
 export default function CreateWorm() {
+  const [wormData, setWormData] = useState([]);
+  const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
-  const { data, isLoading } = useSWR(`/api/worms/`);
+  const { data, isLoading, mutate } = useSWR(`/api/worms/`);
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
     {
@@ -31,6 +34,8 @@ export default function CreateWorm() {
       [wormId]: !prevStatus[wormId],
     }));
   };
+
+  const hasFavorites = Object.values(favoriteStatus).some((status) => status);
 
   async function addWorm(worm) {
     const response = await fetch("/api/worms", {
@@ -61,10 +66,30 @@ export default function CreateWorm() {
     router.push("/contact");
     window.location.reload();
   }
-  const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
 
+  async function handleEdit(editedWorm) {
+    const response = await fetch(`/api/worms/${editedWorm._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedWorm),
+    });
+
+    if (response.ok) {
+      mutate();
+      setIsEditMode(false); // Exit edit mode after successful edit
+    } else {
+      console.error(`Error: ${response.status}`);
+    }
+  }
+
+  const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
   return (
     <>
+      {isEditMode && (
+        <WormForm wormData={wormData} handleEdit={handleEdit} isEditMode />
+      )}
       <div className={styles.containerContact}>
         <ContactPage />
         <Link href="./impressum" target="_blank">
@@ -72,7 +97,11 @@ export default function CreateWorm() {
         </Link>
       </div>
 
-      <h3> your favorite worms </h3>
+      <h3>
+        {hasFavorites
+          ? "Your Favorite Worms"
+          : "Hmm, you haven't like any worms yet..."}
+      </h3>
       <ul className={styles.imageGrid}>
         {favoriteWorms.map((worm) => (
           <li key={worm._id}>
@@ -94,8 +123,9 @@ export default function CreateWorm() {
           </li>
         ))}
       </ul>
+
       <div className={styles.containerForm}>
-        <WormForm onSubmit={addWorm} />
+        <WormForm addWorm={addWorm} />
       </div>
 
       <ul className={styles.imageGrid}>
@@ -109,6 +139,15 @@ export default function CreateWorm() {
               <span role="img" aria-label="A cross indicating deletion">
                 ❌
               </span>
+            </button>
+            <button
+              className={styles.editButton}
+              onClick={() => {
+                setIsEditMode(true);
+                setWormData(worm);
+              }}
+            >
+              ✏️
             </button>
             <button
               onClick={() => handleFavoriteToggle(worm._id)}
