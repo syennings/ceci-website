@@ -25,3 +25,22 @@
 .workItem a {
   color: black;
 }
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tags span {
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tags span.selected {
+  background-color: #2980b9;
+}
