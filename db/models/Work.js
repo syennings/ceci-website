@@ -16,6 +16,7 @@ const workSchema = new Schema({
   school: { type: String },
   images: { type: [String] },
   slug: { type: String },
+  type: { type: [String] },
 });
 
 const Work = mongoose.models.Work || mongoose.model("Work", workSchema);
