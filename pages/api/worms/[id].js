@@ -20,4 +20,11 @@ export default async function handler(request, response) {
 
     response.status(200).json({ message: "Success!" });
   }
+
+  if (request.method === "PATCH") {
+    await Worm.findByIdAndUpdate(id, {
+      $set: request.body,
+    });
+    return response.status(200).json({ status: "Worm successfully updated." });
+  }
 }
