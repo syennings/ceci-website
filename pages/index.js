@@ -2,15 +2,17 @@ import WormPicture from "@/components/Worms";
 import useSWR from "swr";
 import styles from "./homepage.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   const { data, isLoading } = useSWR(`/api/worms/`);
+  const { data: workData, isLoading: worksAreLoading } = useSWR("/api/works");
 
-  if (isLoading) {
+  if (isLoading || worksAreLoading) {
     return <h1>Loading...</h1>;
   }
 
-  if (!data) {
+  if (!data || !workData) {
     return <p>Data not found</p>;
   }
 
@@ -38,6 +40,20 @@ export default function HomePage() {
             <p>Ceci is basically, Berlins biggest underground designer.</p>
           </h3>
         </div>
+      </div>
+      <div className={styles.images}>
+        {workData.map((work) => (
+          <div key={work.id}>
+            <Link href={`/works/${work.slug}`}>
+              <Image
+                src={work.images[0]}
+                alt={`Image of ${work.title}`}
+                width={300}
+                height={320}
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </>
   );

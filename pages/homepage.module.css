@@ -25,6 +25,14 @@
   animation: fadeIn 1.5s forwards; /* Use the fadeIn animation with a duration of 1.5 seconds */
 }
 
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  margin-left: 20px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0; /* Start with opacity 0 */
