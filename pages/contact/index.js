@@ -85,6 +85,8 @@ export default function CreateWorm() {
   }
 
   const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
+  const unlikedWorms = data.filter((worm) => !favoriteStatus[worm._id]);
+
   const wormCount = data ? data.length : 0;
 
   return (
@@ -129,36 +131,42 @@ export default function CreateWorm() {
       <div className={styles.containerForm}>
         <WormForm addWorm={addWorm} />
       </div>
-      <ul className={styles.imageGrid}>
-        {data.map((worm) => (
-          <li key={worm._id}>
-            <WormPicture selectedWorm={worm} />
-            <button
-              onClick={() => handleDelete(worm._id)}
-              className={styles.deleteButton}
-            >
-              <span role="img" aria-label="A cross indicating deletion">
-                ❌
-              </span>
-            </button>
-            <button
-              className={styles.editButton}
-              onClick={() => {
-                setIsEditMode(true);
-                setWormData(worm);
-              }}
-            >
-              ✏️
-            </button>
-            <button
-              onClick={() => handleFavoriteToggle(worm._id)}
-              className={styles.likeButton}
-            >
-              {favoriteStatus[worm._id] ? "❤️" : "🤍"}
-            </button>
-          </li>
-        ))}
-      </ul>
+
+      {unlikedWorms.length > 0 && (
+        <>
+          <h3>Your Unliked Worms</h3>
+          <ul className={styles.imageGrid}>
+            {unlikedWorms.map((worm) => (
+              <li key={worm._id}>
+                <WormPicture selectedWorm={worm} />
+                <button
+                  onClick={() => handleDelete(worm._id)}
+                  className={styles.deleteButton}
+                >
+                  <span role="img" aria-label="A cross indicating deletion">
+                    ❌
+                  </span>
+                </button>
+                <button
+                  className={styles.editButton}
+                  onClick={() => {
+                    setIsEditMode(true);
+                    setWormData(worm);
+                  }}
+                >
+                  ✏️
+                </button>
+                <button
+                  onClick={() => handleFavoriteToggle(worm._id)}
+                  className={styles.likeButton}
+                >
+                  {favoriteStatus[worm._id] ? "❤️" : "🤍"}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 }
