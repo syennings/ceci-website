@@ -41,8 +41,8 @@ export default function WorkList() {
                     <Image
                       src={work.images[0]}
                       alt={`${work.title} Preview`}
-                      width={100}
-                      height={100}
+                      width={180}
+                      height={200}
                     />
                   </div>
                 )}

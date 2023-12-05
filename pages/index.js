@@ -23,13 +23,11 @@ export default function HomePage() {
   return (
     <>
       <div className={styles.homePage}>
-        <h2 className={styles.title}>
-          Welcome to <Link href="/info">my</Link> website
-        </h2>
         <div className={styles.contentWrapper}>
           <WormPicture selectedWorm={selectedWorm}> </WormPicture>
           <h3 className={styles.text}>
-            Ana Breña Cecilia is a Mexican designer currently working with{" "}
+            <Link href="/info">Ana Breña Cecilia</Link> is a Mexican designer
+            currently working with{" "}
             <a href="https://www.santiagodasilva.com/" target="_blank">
               Studio Santiago de Silva
             </a>{" "}

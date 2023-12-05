@@ -1,11 +1,13 @@
 .homePage {
   /* Add any additional styles for the overall page here */
-  /* background-color: #ca89c6; */
-  color: green;
+
+  color: black;
+  padding: 20px;
 }
 
 .contentWrapper {
   display: flex;
+  margin-left: 20px;
 }
 
 .title {
@@ -17,6 +19,19 @@
   margin-left: 80px;
   max-width: 300px;
   font-size: 18px;
+  max-width: 300px;
+  font-size: 18px;
+  opacity: 0; /* Set initial opacity to 0 */
+  animation: fadeIn 1.5s forwards; /* Use the fadeIn animation with a duration of 1.5 seconds */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+    opacity: 1; /* End with opacity 1 */
+  }
 }
 
 .homePage a:hover {

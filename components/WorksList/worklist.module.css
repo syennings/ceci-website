@@ -1,13 +1,16 @@
 /* WorkList.module.css */
 
 .workItem {
+  position: relative;
   margin-bottom: 10px;
+  display: inline-block;
+  padding: 25px;
 }
 
 .preview {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 75%;
+  right: 35%;
   display: none;
 }
 
@@ -20,5 +23,5 @@
 }
 
 .workItem a {
-  color: purple;
+  color: black;
 }
