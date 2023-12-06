@@ -12,7 +12,7 @@ export default function Login() {
       )}
       {!session && (
         <>
-          <h1>Please Sign In</h1>
+          <h1>Please Log In To Add Some Worms</h1>
           <button onClick={() => signIn()}> Sign In Here</button>
         </>
       )}

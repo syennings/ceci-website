@@ -45,6 +45,12 @@ export default function WorkList() {
   const filteredWorks =
     selectedType === "all" ? data : worksByType[selectedType] || [];
 
+  const handleSearch = (searchQuery, type) => {
+    // Perform additional filtering or state updates if needed
+    console.log("Search query:", searchQuery);
+    console.log("Selected type:", type);
+  };
+
   return (
     <>
       <ul className={styles.workList}>

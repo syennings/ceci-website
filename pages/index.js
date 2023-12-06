@@ -3,24 +3,50 @@ import useSWR from "swr";
 import styles from "./homepage.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import SearchBar from "@/components/SearchBar";
+import { useState } from "react";
 
 export default function HomePage() {
-  const { data, isLoading } = useSWR(`/api/worms/`);
+  const { data: wormData, isLoading: wormsAreLoading } = useSWR(`/api/worms/`);
   const { data: workData, isLoading: worksAreLoading } = useSWR("/api/works");
+  const [selectedType, setSelectedType] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  if (isLoading || worksAreLoading) {
+  if (wormsAreLoading || worksAreLoading) {
     return <h1>Loading...</h1>;
   }
 
-  if (!data || !workData) {
+  if (!wormData || !workData) {
     return <p>Data not found</p>;
   }
 
+  //find specific worm//
   const desiredWorm = "worm1";
-  const selectedWorm = data.find((worm) => worm.label === desiredWorm);
+  const selectedWorm = wormData.find((worm) => worm.label === desiredWorm);
   if (!selectedWorm) {
     return <p>Invalid Worm</p>;
   }
+  //find works by type//
+  const worksByType = workData.reduce((acc, work) => {
+    work.type.forEach((type) => {
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(work);
+    });
+    return acc;
+  }, {});
+
+  const uniqueTypes = Object.keys(worksByType);
+
+  const displayedWorks = workData
+    .filter((work) =>
+      work.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter(
+      (work) =>
+        selectedType === "all" || worksByType[selectedType]?.includes(work)
+    );
 
   return (
     <>
@@ -40,9 +66,16 @@ export default function HomePage() {
             <p>Ceci is basically, Berlins biggest underground designer.</p>
           </h3>
         </div>
+        <SearchBar
+          uniqueTypes={uniqueTypes}
+          onSearch={(query, type) => {
+            setSearchQuery(query);
+            setSelectedType(type);
+          }}
+        />
       </div>
       <div className={styles.images}>
-        {workData.map((work) => (
+        {displayedWorks.map((work) => (
           <div key={work.id}>
             <Link href={`/works/${work.slug}`}>
               <Image
