@@ -20,8 +20,9 @@ export default function WorkList() {
 
   console.log("wormData", wormData);
 
-  const desiredWorm = "worm3";
-  const selectedWorm = wormData.find((worm) => worm.label === desiredWorm);
+  //find specific worm//
+  const desiredWormId = "6568862e2ff078c1d2b0adf3";
+  const selectedWorm = wormData.find((worm) => worm._id === desiredWormId);
   if (!selectedWorm) {
     return <p>Invalid Worm</p>;
   }
@@ -45,6 +46,12 @@ export default function WorkList() {
   const filteredWorks =
     selectedType === "all" ? data : worksByType[selectedType] || [];
 
+  const handleSearch = (searchQuery, type) => {
+    // Perform additional filtering or state updates if needed
+    console.log("Search query:", searchQuery);
+    console.log("Selected type:", type);
+  };
+
   return (
     <>
       <ul className={styles.workList}>
@@ -62,6 +69,8 @@ export default function WorkList() {
                       alt={`${work.title} Preview`}
                       width={180}
                       height={200}
+                      layout="responsive"
+                      objectFit="contain"
                     />
                   </div>
                 )}

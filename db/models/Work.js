@@ -17,6 +17,7 @@ const workSchema = new Schema({
   images: { type: [String] },
   slug: { type: String },
   type: { type: [String] },
+  color: { type: String },
 });
 
 const Work = mongoose.models.Work || mongoose.model("Work", workSchema);

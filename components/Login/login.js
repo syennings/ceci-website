@@ -6,13 +6,13 @@ export default function Login() {
     <div>
       {session && (
         <>
-          <p>Signed in as {session.user.email}</p>
+          <p>Signed in as {session.user.name}</p>
           <button onClick={() => signOut()}> Sign Out Here </button>
         </>
       )}
       {!session && (
         <>
-          <h1>Please Sign In</h1>
+          <h1>Please Log In To Add Some Worms</h1>
           <button onClick={() => signIn()}> Sign In Here</button>
         </>
       )}

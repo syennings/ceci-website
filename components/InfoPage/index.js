@@ -1,6 +1,4 @@
 import { useRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useEffect } from "react";
 import ContactPage from "../ContactPage";
 import Link from "next/link";
 
