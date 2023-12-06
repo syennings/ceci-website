@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
+import ContactPage from "../ContactPage";
+import Link from "next/link";
 
 export default function InfoPage() {
   const router = useRouter();
-  const { data: session, status } = useSession();
 
   return (
     <>
@@ -12,6 +14,12 @@ export default function InfoPage() {
           Ana Breña Cecilia is a Mexican designer currently working with Studio
           Santiago de Silva in Berlin.
         </p>
+
+        <ContactPage />
+        <Link href="./impressum" target="_blank">
+          Impressum | Datenschutz{" "}
+        </Link>
+
         <p> Ceci is basically, berlins biggest underground designer.</p>
         <p> A CV can be found here</p>
         <h3>Publications </h3>
@@ -24,24 +32,6 @@ export default function InfoPage() {
         </p>
         <h3> Prints</h3>
         <li> installations 2022 Westwärts, installations 2022 Westwärts</li>
-      </div>
-
-      <div>
-        <h1>Sign In</h1>
-
-        {session && (
-          <>
-            <button onClick={() => signOut()}> Sign Out Here </button>
-            <p>Signed in as {session.user.email}</p>
-          </>
-        )}
-        {!session && (
-          <>
-            <button onClick={() => signIn()}> Sign In Here</button>
-
-            <p>Not signed in</p>
-          </>
-        )}
       </div>
     </>
   );

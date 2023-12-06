@@ -8,6 +8,7 @@ import styles from "./contact.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import Login from "@/components/Login/login";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
@@ -95,12 +96,8 @@ export default function CreateWorm() {
     <>
       <p>Worm Count: {wormCount}</p>
 
-      <div className={styles.containerContact}>
-        <ContactPage />
-        <Link href="./impressum" target="_blank">
-          Impressum | Datenschutz{" "}
-        </Link>
-      </div>
+      <Login />
+
       <h3>
         {hasFavorites
           ? "Your Favorite Worms"

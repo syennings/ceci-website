@@ -20,8 +20,8 @@ export function Navigation() {
             <Link href="/works" passHref>
               <div className={styles.works}>Works</div>
             </Link>
-            <Link href="/contact" passHref>
-              <div className={styles.contact}>Contact</div>
+            <Link href="/worms" passHref>
+              <div className={styles.contact}>Worms</div>
             </Link>
             <Link href="/info" passHref>
               <div className={styles.info}>About</div>
