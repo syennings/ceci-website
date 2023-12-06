@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function InfoPage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   return (
     <>
@@ -24,7 +26,23 @@ export default function InfoPage() {
         <li> installations 2022 Westwärts, installations 2022 Westwärts</li>
       </div>
 
-      <h3>Favorited Worms</h3>
+      <div>
+        <h1>Sign In</h1>
+
+        {session && (
+          <>
+            <button onClick={() => signOut()}> Sign Out Here </button>
+            <p>Signed in as {session.user.email}</p>
+          </>
+        )}
+        {!session && (
+          <>
+            <button onClick={() => signIn()}> Sign In Here</button>
+
+            <p>Not signed in</p>
+          </>
+        )}
+      </div>
     </>
   );
 }

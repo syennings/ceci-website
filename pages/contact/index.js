@@ -7,12 +7,14 @@ import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
+  const { data: session } = useSession();
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
     {
@@ -92,10 +94,7 @@ export default function CreateWorm() {
   return (
     <>
       <p>Worm Count: {wormCount}</p>
-      {/* Display worm count in the contact form */}
-      {isEditMode && (
-        <WormForm wormData={wormData} handleEdit={handleEdit} isEditMode />
-      )}
+
       <div className={styles.containerContact}>
         <ContactPage />
         <Link href="./impressum" target="_blank">
@@ -129,7 +128,7 @@ export default function CreateWorm() {
         ))}
       </ul>
       <div className={styles.containerForm}>
-        <WormForm addWorm={addWorm} />
+        {session ? <WormForm addWorm={addWorm} /> : null}
       </div>
 
       {unlikedWorms.length > 0 && (
@@ -147,15 +146,19 @@ export default function CreateWorm() {
                     ❌
                   </span>
                 </button>
-                <button
-                  className={styles.editButton}
-                  onClick={() => {
-                    setIsEditMode(true);
-                    setWormData(worm);
-                  }}
-                >
-                  ✏️
-                </button>
+
+                {session ? (
+                  <button
+                    className={styles.editButton}
+                    onClick={() => {
+                      setIsEditMode(true);
+                      setWormData(worm);
+                    }}
+                  >
+                    ✏️
+                  </button>
+                ) : null}
+
                 <button
                   onClick={() => handleFavoriteToggle(worm._id)}
                   className={styles.likeButton}
@@ -164,6 +167,13 @@ export default function CreateWorm() {
                 </button>
               </li>
             ))}
+            {isEditMode && (
+              <WormForm
+                wormData={wormData}
+                handleEdit={handleEdit}
+                isEditMode
+              />
+            )}
           </ul>
         </>
       )}
