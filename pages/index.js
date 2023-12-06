@@ -50,6 +50,8 @@ export default function HomePage() {
                 alt={`Image of ${work.title}`}
                 width={300}
                 height={320}
+                layout="responsive"
+                objectFit="contain"
               />
             </Link>
           </div>

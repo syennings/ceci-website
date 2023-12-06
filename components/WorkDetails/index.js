@@ -61,6 +61,8 @@ export default function WorkDetails() {
             width={400}
             height={200}
             onClick={handleClickNext}
+            layout="responsive"
+            objectFit="contain"
           />
         </div>
         {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
