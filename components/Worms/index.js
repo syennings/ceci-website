@@ -32,16 +32,17 @@ export default function WormPicture({ selectedWorm }) {
     <>
       <Draggable>
         <div style={{ cursor: "grab" }}>
-          <p> {selectedWorm.label}</p>
           <Image
             src={selectedWorm.url}
             alt={selectedWorm.label}
             width={150}
             height={80}
+            layout="fixed"
+            objectFit="contain"
           />
 
           <Link href={`/works/${randomWork.slug}`}>
-            <p> click me</p>
+            <p> {selectedWorm.label}</p>
           </Link>
         </div>
       </Draggable>
