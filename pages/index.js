@@ -68,6 +68,7 @@ export default function HomePage() {
         </div>
         <SearchBar
           uniqueTypes={uniqueTypes}
+          workData={workData}
           onSearch={(query, type) => {
             setSearchQuery(query);
             setSelectedType(type);

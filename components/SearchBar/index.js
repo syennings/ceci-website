@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./search.module.css";
 
-export default function SearchBar({ onSearch, uniqueTypes }) {
+export default function SearchBar({ onSearch, uniqueTypes, workData }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("all");
 
@@ -12,7 +12,15 @@ export default function SearchBar({ onSearch, uniqueTypes }) {
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
-    onSearch(query, selectedType); // Include the selected type if needed
+    const lowercaseQuery = query.toLowerCase();
+
+    // Filter works based on a case-insensitive partial match
+    const filteredWorks = workData.filter((work) =>
+      work.title.toLowerCase().includes(lowercaseQuery)
+    );
+
+    // Include the selected type if needed
+    onSearch(lowercaseQuery, selectedType, filteredWorks);
   };
 
   return (
