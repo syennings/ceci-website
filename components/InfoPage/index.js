@@ -1,4 +1,8 @@
 import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
+import ContactPage from "../ContactPage";
+import Link from "next/link";
 
 export default function InfoPage() {
   const router = useRouter();
@@ -10,6 +14,12 @@ export default function InfoPage() {
           Ana Breña Cecilia is a Mexican designer currently working with Studio
           Santiago de Silva in Berlin.
         </p>
+
+        <ContactPage />
+        <Link href="./impressum" target="_blank">
+          Impressum | Datenschutz{" "}
+        </Link>
+
         <p> Ceci is basically, berlins biggest underground designer.</p>
         <p> A CV can be found here</p>
         <h3>Publications </h3>
@@ -23,8 +33,6 @@ export default function InfoPage() {
         <h3> Prints</h3>
         <li> installations 2022 Westwärts, installations 2022 Westwärts</li>
       </div>
-
-      <h3>Favorited Worms</h3>
     </>
   );
 }
