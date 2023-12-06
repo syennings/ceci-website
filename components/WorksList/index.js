@@ -20,8 +20,9 @@ export default function WorkList() {
 
   console.log("wormData", wormData);
 
-  const desiredWorm = "worm3";
-  const selectedWorm = wormData.find((worm) => worm.label === desiredWorm);
+  //find specific worm//
+  const desiredWormId = "6568862e2ff078c1d2b0adf3";
+  const selectedWorm = wormData.find((worm) => worm._id === desiredWormId);
   if (!selectedWorm) {
     return <p>Invalid Worm</p>;
   }
@@ -68,6 +69,8 @@ export default function WorkList() {
                       alt={`${work.title} Preview`}
                       width={180}
                       height={200}
+                      layout="responsive"
+                      objectFit="contain"
                     />
                   </div>
                 )}

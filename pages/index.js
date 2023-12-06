@@ -21,8 +21,8 @@ export default function HomePage() {
   }
 
   //find specific worm//
-  const desiredWorm = "worm1";
-  const selectedWorm = wormData.find((worm) => worm.label === desiredWorm);
+  const desiredWormId = "6568862e2ff078c1d2b0adf1";
+  const selectedWorm = wormData.find((worm) => worm._id === desiredWormId);
   if (!selectedWorm) {
     return <p>Invalid Worm</p>;
   }

@@ -22,6 +22,18 @@ export default function WorkDetails() {
     return <p>Data not found</p>;
   }
 
+  // const backgroundColor = stringToColor(data.title);
+  // function stringToColor(str) {
+  //   let hash = 0;
+  //   for (let i = 0; i < str.length; i++) {
+  //     hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  //   }
+  //   const c = (hash & 0x00ffffff).toString(16).toUpperCase();
+  //   return "#" + "00000".substring(0, 6 - c.length) + c;
+  // }
+
+  const backgroundColor = data.color || "#FFFFFF";
+
   function handleClickNext() {
     if (data) {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.images.length);
@@ -45,7 +57,7 @@ export default function WorkDetails() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} style={{ backgroundColor }}>
         <div className={styles.overlayText}>
           <small>ID: {data._id}</small>
           <p>
@@ -53,7 +65,7 @@ export default function WorkDetails() {
           </p>
         </div>
 
-        <p> {getImageCounter()} </p>
+        <p className={styles.counter}> {getImageCounter()} </p>
         <div className={styles.imageContainer}>
           <Image
             src={currentImage}
