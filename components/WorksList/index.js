@@ -52,6 +52,8 @@ export default function WorkList() {
     console.log("Selected type:", type);
   };
 
+  const hoverColor = data.color;
+
   return (
     <>
       <ul className={styles.workList}>
@@ -59,7 +61,11 @@ export default function WorkList() {
           console.log("Image URL:", work.images && work.images[0]);
 
           return (
-            <li key={work.slug} className={styles.workItem}>
+            <li
+              key={work.slug}
+              className={styles.workItem}
+              style={{ "--hover-color": hoverColor }}
+            >
               <Link href={`/works/${work.slug}`}>
                 {work.title}
                 {work.images && work.images.length > 0 && (

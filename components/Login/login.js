@@ -1,7 +1,10 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const { data: session } = useSession();
+
   return (
     <div>
       {session && (
@@ -12,7 +15,7 @@ export default function Login() {
       )}
       {!session && (
         <>
-          <h1>Please Log In To Add Some Worms</h1>
+          <h1>Please Log In To Go To Secret Worms Page</h1>
           <button onClick={() => signIn()}> Sign In Here</button>
         </>
       )}

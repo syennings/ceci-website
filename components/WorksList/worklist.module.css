@@ -19,7 +19,7 @@
 }
 
 .workItem:hover {
-  background-color: pink;
+  background-color: var(--hover-color, pink);
 }
 
 .workItem a {

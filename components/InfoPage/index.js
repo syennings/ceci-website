@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import ContactPage from "../ContactPage";
 import Link from "next/link";
+import Login from "@/components/Login/login";
 
-export default function InfoPage() {
+export default function Contact() {
   const router = useRouter();
 
   return (
@@ -20,6 +21,8 @@ export default function InfoPage() {
 
         <p> Ceci is basically, berlins biggest underground designer.</p>
         <p> A CV can be found here</p>
+
+        <Login />
         <h3>Publications </h3>
         <p>
           installations 2022 Westwärts Kunsthalle Memmingen A tree; a

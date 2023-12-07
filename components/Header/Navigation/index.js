@@ -1,8 +1,10 @@
 import Link from "next/link";
 import styles from "./navigation.module.css";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export function Navigation() {
+  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const handleToggleMenu = () => {
@@ -20,11 +22,13 @@ export function Navigation() {
             <Link href="/works" passHref>
               <div className={styles.works}>Works</div>
             </Link>
-            <Link href="/worms" passHref>
-              <div className={styles.contact}>Worms</div>
-            </Link>
-            <Link href="/info" passHref>
-              <div className={styles.info}>About</div>
+            {session ? (
+              <Link href="/worms" passHref>
+                <div className={styles.contact}>Worms</div>
+              </Link>
+            ) : null}
+            <Link href="/contact" passHref>
+              <div className={styles.info}>Contact</div>
             </Link>
           </div>
         )}
