@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Draggable from "react-draggable";
 import { useRouter } from "next/router";
+import styles from "./worms.module.css";
 
 export default function WormPicture({ selectedWorm }) {
   const { data, isLoading } = useSWR(`/api/worms/`);
@@ -33,6 +34,7 @@ export default function WormPicture({ selectedWorm }) {
       <Draggable>
         <div style={{ cursor: "grab" }}>
           <Image
+            className={styles.worm}
             src={selectedWorm.url}
             alt={selectedWorm.label}
             width={150}

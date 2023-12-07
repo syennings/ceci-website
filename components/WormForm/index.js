@@ -60,7 +60,7 @@ export default function WormForm({
       </div>
       <div>
         <button type="submit">
-          {isEditMode ? "Save Changes" : "Add Worm"}
+          {isEditMode ? "Save Worm Changes" : "Add Worm"}
         </button>
       </div>
     </form>

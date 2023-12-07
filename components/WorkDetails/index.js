@@ -88,7 +88,9 @@ export default function WorkDetails() {
         </div>
         {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
 
-        <Link href="/works">Back to all</Link>
+        <Link className={styles.back} href="/works">
+          Back to all
+        </Link>
       </div>
     </>
   );

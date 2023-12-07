@@ -52,7 +52,8 @@ export default function HomePage() {
     <>
       <div className={styles.homePage}>
         <div className={styles.contentWrapper}>
-          <WormPicture selectedWorm={selectedWorm}> </WormPicture>
+          <WormPicture className={styles.worm} selectedWorm={selectedWorm} />
+
           <h3 className={styles.text}>
             <Link href="/info">Ana Breña Cecilia</Link> is a Mexican designer
             currently working with{" "}

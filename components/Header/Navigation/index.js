@@ -15,7 +15,7 @@ export function Navigation() {
     <>
       <nav className={styles.navbar}>
         <div className={styles.menuToggle} onClick={handleToggleMenu}>
-          ☰ Menu
+          ☰
         </div>
         {isMenuOpen && (
           <div className={styles.menuItems}>

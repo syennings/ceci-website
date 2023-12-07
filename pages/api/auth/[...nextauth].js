@@ -3,11 +3,11 @@ import GithubProvider from "next-auth/providers/github";
 
 export const authOptions = {
   // Configure one or more authentication providers
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return "/worms";
-    },
-  },
+  // callbacks: {
+  //   async signIn({ user, account, profile, email, credentials }) {
+  //     return "/worms";
+  //   },
+  // },
 
   providers: [
     GithubProvider({

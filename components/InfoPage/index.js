@@ -2,37 +2,38 @@ import { useRouter } from "next/router";
 import ContactPage from "../ContactPage";
 import Link from "next/link";
 import Login from "@/components/Login/login";
+import styles from "./contact.module.css";
 
 export default function Contact() {
   const router = useRouter();
 
   return (
     <>
-      <div className="contact-container">
-        <p>
-          Ana Breña Cecilia is a Mexican designer currently working with Studio
-          Santiago de Silva in Berlin.
-        </p>
-
+      <div className={styles.contactContainer}>
         <ContactPage />
-        <Link href="./impressum" target="_blank">
-          Impressum | Datenschutz{" "}
-        </Link>
 
-        <p> Ceci is basically, berlins biggest underground designer.</p>
-        <p> A CV can be found here</p>
+        <div className={styles.linksContainer}>
+          <Link href="./impressum" target="_blank">
+            Impressum | Datenschutz{" "}
+          </Link>
+        </div>
 
         <Login />
-        <h3>Publications </h3>
-        <p>
+        <h3 className={styles.intro}>Publications </h3>
+        <p className={styles.intro}>
           installations 2022 Westwärts Kunsthalle Memmingen A tree; a
           corporation; a person (public sculpture) Carnegie Museum of Art,
           Pittsburgh Strukturversagen Galerie 14a 2020 WB190621 (permanent
           installation) The Palace and Maritime Silk Road Museum, Fujian Break
           of Gauge Kunstverein Harburger Bahnhof 2018 Flowertokens Trust, Berlin
         </p>
-        <h3> Prints</h3>
-        <li> installations 2022 Westwärts, installations 2022 Westwärts</li>
+      </div>
+      <div className={styles.scrollingBanner}>
+        <div className={styles.marquee}>
+          <div className={styles.space}>Big Thanks To Raggy</div>
+          {/* Duplicate the content as needed */}
+          <div className={styles.space}>Big Thanks To Raggy</div>
+        </div>
       </div>
     </>
   );

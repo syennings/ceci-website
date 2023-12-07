@@ -56,6 +56,25 @@ export default function WorkList() {
 
   return (
     <>
+      <div className={styles.tags}>
+        <span
+          className={selectedType === "all" ? styles.selected : ""}
+          onClick={() => setSelectedType("all")}
+        >
+          All
+        </span>
+
+        {uniqueTypes.map((type) => (
+          <span
+            key={type}
+            className={selectedType === type ? styles.selected : ""}
+            onClick={() => setSelectedType(type)}
+          >
+            {type}
+          </span>
+        ))}
+      </div>
+
       <ul className={styles.workList}>
         {filteredWorks.map((work) => {
           console.log("Image URL:", work.images && work.images[0]);
@@ -88,24 +107,6 @@ export default function WorkList() {
       <WormPicture selectedWorm={selectedWorm}></WormPicture>
 
       {/* Tags section to display clickable tags for unique types */}
-      <div className={styles.tags}>
-        <span
-          className={selectedType === "all" ? styles.selected : ""}
-          onClick={() => setSelectedType("all")}
-        >
-          All
-        </span>
-
-        {uniqueTypes.map((type) => (
-          <span
-            key={type}
-            className={selectedType === type ? styles.selected : ""}
-            onClick={() => setSelectedType(type)}
-          >
-            {type}
-          </span>
-        ))}
-      </div>
     </>
   );
 }
