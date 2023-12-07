@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./workdetails.module.css";
+import { useEffect } from "react";
 
 export default function WorkDetails() {
   const router = useRouter();
@@ -14,6 +15,11 @@ export default function WorkDetails() {
   console.log("where is my data????", data);
   console.log("slug?????", slug);
 
+  // useEffect(() => {
+  //   const setBackgroundColor = data?.color || "#FFFFFF";
+  //   document.querySelector("body").style.backgroundColor = setBackgroundColor;
+  // }, [data]);
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -21,16 +27,6 @@ export default function WorkDetails() {
   if (!data) {
     return <p>Data not found</p>;
   }
-
-  // const backgroundColor = stringToColor(data.title);
-  // function stringToColor(str) {
-  //   let hash = 0;
-  //   for (let i = 0; i < str.length; i++) {
-  //     hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  //   }
-  //   const c = (hash & 0x00ffffff).toString(16).toUpperCase();
-  //   return "#" + "00000".substring(0, 6 - c.length) + c;
-  // }
 
   const backgroundColor = data.color || "#FFFFFF";
 
@@ -40,7 +36,7 @@ export default function WorkDetails() {
     }
   }
 
-  function handClickPrevious() {
+  function handleClickPrevious() {
     if (data) {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? data.images.length - 1 : prevIndex - 1
@@ -55,9 +51,22 @@ export default function WorkDetails() {
     return `${currentImageIndex + 1}/${data.images.length}`;
   }
 
+  const handleImageClick = (event) => {
+    const { offsetX, target } = event.nativeEvent;
+    const { width } = target.getBoundingClientRect();
+
+    // Check if the click is on the right side (more than half of the width)
+    if (offsetX > width / 2) {
+      handleClickNext();
+    } else {
+      handleClickPrevious();
+    }
+  };
+
   return (
     <>
-      <div className={styles.container} style={{ backgroundColor }}>
+      <div className={styles.outerContainer} style={{ backgroundColor }}></div>
+      <div className={styles.container}>
         <div className={styles.overlayText}>
           <small>ID: {data._id}</small>
           <p>
@@ -66,7 +75,7 @@ export default function WorkDetails() {
         </div>
 
         <p className={styles.counter}> {getImageCounter()} </p>
-        <div className={styles.imageContainer}>
+        <div className={styles.imageContainer} onClick={handleImageClick}>
           <Image
             src={currentImage}
             alt={data.title}

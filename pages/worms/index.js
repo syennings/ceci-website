@@ -1,21 +1,17 @@
-import Link from "next/link.js";
 import { useRouter } from "next/router";
 import WormForm from "@/components/WormForm/index.js";
 import WormPicture from "@/components/Worms";
 import useSWR from "swr";
-import ContactPage from "@/components/ContactPage";
 import styles from "./contact.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import Login from "@/components/Login/login";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
-  const { data: session } = useSession();
+
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
     {
@@ -96,8 +92,6 @@ export default function CreateWorm() {
     <>
       <p>Worm Count: {wormCount}</p>
 
-      <Login />
-
       <h3>
         {hasFavorites
           ? "Your Favorite Worms"
@@ -125,7 +119,7 @@ export default function CreateWorm() {
         ))}
       </ul>
       <div className={styles.containerForm}>
-        {session ? <WormForm addWorm={addWorm} /> : null}
+        <WormForm addWorm={addWorm} />
       </div>
 
       {unlikedWorms.length > 0 && (
@@ -144,18 +138,15 @@ export default function CreateWorm() {
                   </span>
                 </button>
 
-                {session ? (
-                  <button
-                    className={styles.editButton}
-                    onClick={() => {
-                      setIsEditMode(true);
-                      setWormData(worm);
-                    }}
-                  >
-                    ✏️
-                  </button>
-                ) : null}
-
+                <button
+                  className={styles.editButton}
+                  onClick={() => {
+                    setIsEditMode(true);
+                    setWormData(worm);
+                  }}
+                >
+                  ✏️
+                </button>
                 <button
                   onClick={() => handleFavoriteToggle(worm._id)}
                   className={styles.likeButton}
