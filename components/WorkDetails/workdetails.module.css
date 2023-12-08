@@ -58,12 +58,3 @@
   font-family: "Times New Roman", Times, serif;
   font-size: 16pt;
 }
-
-@keyframes wiggle {
-  0% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
-}
