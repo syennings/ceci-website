@@ -131,7 +131,7 @@ export default function CreateWorm() {
             onClick={toggleFormVisibility}
             className={styles.toggleFormButton}
           >
-            ➕
+            {isFormVisible ? "✖️" : "➕"}
           </button>
           {isFormVisible && <WormForm addWorm={addWorm} />}
         </div>

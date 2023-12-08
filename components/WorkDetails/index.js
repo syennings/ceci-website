@@ -70,7 +70,8 @@ export default function WorkDetails() {
         <div className={styles.overlayText}>
           <small>ID: {data._id}</small>
           <p>
-            {data.title}.{data.publisher}.{data.editors}.{data.school}.
+            {data.title}. {data.editors}. {data.year}. {data.dimensions}.{" "}
+            {data.pages} pp. {data.publisher}. {data.projectType}. {data.school}
           </p>
         </div>
 
@@ -86,8 +87,6 @@ export default function WorkDetails() {
             layout="responsive"
           />
         </div>
-        {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
-
         <Link className={styles.back} href="/works">
           Back to all
         </Link>

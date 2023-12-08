@@ -4,13 +4,26 @@ import styles from "./homepage.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const { data: wormData, isLoading: wormsAreLoading } = useSWR(`/api/worms/`);
   const { data: workData, isLoading: worksAreLoading } = useSWR("/api/works");
   const [selectedType, setSelectedType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 200); // Adjust the scroll threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (wormsAreLoading || worksAreLoading) {
     return <h1>Loading...</h1>;
@@ -47,6 +60,10 @@ export default function HomePage() {
       (work) =>
         selectedType === "all" || worksByType[selectedType]?.includes(work)
     );
+
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -91,6 +108,12 @@ export default function HomePage() {
             </Link>
           </div>
         ))}
+
+        {showBackToTop && (
+          <button className={styles.backToTopButton} onClick={handleBackToTop}>
+            Back to Top
+          </button>
+        )}
       </div>
     </>
   );
