@@ -104,9 +104,10 @@ export default function WorkList() {
           );
         })}
       </ul>
-      <WormPicture selectedWorm={selectedWorm}></WormPicture>
-
-      {/* Tags section to display clickable tags for unique types */}
+      <WormPicture
+        className={styles.wormie}
+        selectedWorm={selectedWorm}
+      ></WormPicture>
     </>
   );
 }
