@@ -70,24 +70,23 @@ export default function WorkDetails() {
         <div className={styles.overlayText}>
           <small>ID: {data._id}</small>
           <p>
-            {data.title}.{data.publisher}.{data.editors}.{data.school}.
+            {data.title}. {data.editors}. {data.year}. {data.dimensions}.{" "}
+            {data.pages} pp. {data.publisher}. {data.projectType}. {data.school}
           </p>
         </div>
 
         <p className={styles.counter}> {getImageCounter()} </p>
         <div className={styles.imageContainer} onClick={handleImageClick}>
           <Image
+            style={{ objectFit: "cover" }}
             src={currentImage}
             alt={data.title}
             width={400}
             height={200}
             onClick={handleClickNext}
             layout="responsive"
-            objectFit="contain"
           />
         </div>
-        {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}
-
         <Link className={styles.back} href="/works">
           Back to all
         </Link>

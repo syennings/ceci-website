@@ -5,13 +5,13 @@ import useSWR from "swr";
 import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
-import { useEffect } from "react";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
@@ -106,6 +106,12 @@ export default function CreateWorm() {
 
   const wormCount = data ? data.length : 0;
 
+  const toggleFormVisibility = () => {
+    setIsFormVisible((prev) => !prev);
+    setIsEditMode(false); // Close edit mode when showing/hiding the form
+    setWormData([]); // Clear wormData when showing/hiding the form
+  };
+
   return (
     <>
       <div className={styles.main}>
@@ -119,6 +125,17 @@ export default function CreateWorm() {
             ? "Your Favorite Worms"
             : "Hmm, you haven't like any worms yet..."}
         </h3>
+
+        <div className={styles.containerForm}>
+          <button
+            onClick={toggleFormVisibility}
+            className={styles.toggleFormButton}
+          >
+            {isFormVisible ? "✖️" : "➕"}
+          </button>
+          {isFormVisible && <WormForm addWorm={addWorm} />}
+        </div>
+
         <ul className={styles.imageGrid}>
           {favoriteWorms.map((worm) => (
             <li key={worm._id} className={styles.wormCard}>
@@ -140,9 +157,6 @@ export default function CreateWorm() {
             </li>
           ))}
         </ul>
-        <div className={styles.containerForm}>
-          <WormForm addWorm={addWorm} />
-        </div>
 
         {unlikedWorms.length > 0 && (
           <>

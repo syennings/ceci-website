@@ -22,10 +22,6 @@
   background-color: var(--hover-color, pink);
 }
 
-.workItem a {
-  color: black;
-}
-
 .tags {
   display: flex;
   gap: 10px;
@@ -49,4 +45,10 @@
 
 .tags span.selected {
   background-color: #afa7ce;
+}
+
+.wormie {
+  display: flex;
+  justify-content: right;
+  background-color: red;
 }

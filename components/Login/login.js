@@ -19,7 +19,9 @@ export default function Login() {
       {session && (
         <>
           <p>Signed in as {session.user.name}</p>
-          <button onClick={() => signOut()}> Sign Out Here </button>
+          <button className={styles.button} onClick={() => signOut()}>
+            Sign Out Here
+          </button>
         </>
       )}
       {!session && (
