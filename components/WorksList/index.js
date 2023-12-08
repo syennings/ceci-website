@@ -77,6 +77,7 @@ export default function WorkList() {
 
       <ul className={styles.workList}>
         {filteredWorks.map((work) => {
+          const hoverColor = work.color;
           console.log("Image URL:", work.images && work.images[0]);
 
           return (

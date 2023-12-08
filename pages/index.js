@@ -111,7 +111,7 @@ export default function HomePage() {
 
         {showBackToTop && (
           <button className={styles.backToTopButton} onClick={handleBackToTop}>
-            Back to Top
+            Back to Top 🪱
           </button>
         )}
       </div>

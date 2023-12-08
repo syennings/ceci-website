@@ -36,7 +36,7 @@
   display: flex;
   margin-left: 10px;
   padding: 8px 12px;
-  background-color: #3498db;
+  background-color: blue;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -44,11 +44,11 @@
 }
 
 .tags span.selected {
-  background-color: #afa7ce;
+  background-color: pink;
 }
 
 .wormie {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   background-color: red;
 }

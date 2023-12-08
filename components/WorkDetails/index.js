@@ -68,14 +68,14 @@ export default function WorkDetails() {
       <div className={styles.outerContainer} style={{ backgroundColor }}></div>
       <div className={styles.container}>
         <div className={styles.overlayText}>
-          <small>ID: {data._id}</small>
+          <u className={styles.title}>{data.title}</u>
           <p>
-            {data.title}. {data.editors}. {data.year}. {data.dimensions}.{" "}
-            {data.pages} pp. {data.publisher}. {data.projectType}. {data.school}
+            {data.editors} {data.year}. {data.dimensions}. {data.pages} pp.{" "}
+            {data.publisher}. {data.projectType}. {data.school}
           </p>
         </div>
-
         <p className={styles.counter}> {getImageCounter()} </p>
+
         <div className={styles.imageContainer} onClick={handleImageClick}>
           <Image
             style={{ objectFit: "cover" }}
@@ -88,7 +88,7 @@ export default function WorkDetails() {
           />
         </div>
         <Link className={styles.back} href="/works">
-          Back to all
+          Back to All
         </Link>
       </div>
     </>
