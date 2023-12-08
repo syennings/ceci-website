@@ -45,7 +45,8 @@ export default function CreateWorm() {
     });
     if (response.ok) {
       await response.json();
-      router.push("/contact");
+      mutate();
+      router.push("/worms");
     } else {
       console.error(`Error: ${response.status}`);
     }
@@ -70,8 +71,8 @@ export default function CreateWorm() {
 
     console.log("Worm deleted successfully");
 
-    router.push("/contact");
-    window.location.reload();
+    mutate();
+    router.push("/worms");
   }
 
   async function handleEdit(editedWorm) {
@@ -119,13 +120,6 @@ export default function CreateWorm() {
         <p> You Have </p>
         <p className={styles.wormCount}>{wormCount} </p>
         <p> Worms</p>
-
-        <h3>
-          {hasFavorites
-            ? "Your Favorite Worms"
-            : "Hmm, you haven't like any worms yet..."}
-        </h3>
-
         <div className={styles.containerForm}>
           <button
             onClick={toggleFormVisibility}
@@ -135,7 +129,11 @@ export default function CreateWorm() {
           </button>
           {isFormVisible && <WormForm addWorm={addWorm} />}
         </div>
-
+        <h3 className={styles.favorite}>
+          {hasFavorites
+            ? "Your Favorite Worms"
+            : "Hmm, you haven't like any worms yet..."}
+        </h3>
         <ul className={styles.imageGrid}>
           {favoriteWorms.map((worm) => (
             <li key={worm._id} className={styles.wormCard}>
