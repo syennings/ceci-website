@@ -77,13 +77,13 @@ export default function WorkDetails() {
         <p className={styles.counter}> {getImageCounter()} </p>
         <div className={styles.imageContainer} onClick={handleImageClick}>
           <Image
+            style={{ objectFit: "cover" }}
             src={currentImage}
             alt={data.title}
             width={400}
             height={200}
             onClick={handleClickNext}
             layout="responsive"
-            objectFit="contain"
           />
         </div>
         {/* <button onClick={handClickPrevious}>&lt; Previous</button> */}

@@ -22,6 +22,8 @@
   color: #ffffff; /* Choose your text color */
   padding: 10px;
   overflow: hidden;
+  width: 300px;
+  height: 30px;
 }
 
 .marquee {

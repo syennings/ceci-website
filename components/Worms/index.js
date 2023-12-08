@@ -34,11 +34,12 @@ export default function WormPicture({ selectedWorm }) {
       <Draggable>
         <div style={{ cursor: "grab" }}>
           <Image
+            style={{ objectFit: "contain" }}
             className={styles.worm}
             src={selectedWorm.url}
             alt={selectedWorm.label}
             width={150}
-            height={80}
+            height={150}
             layout="fixed"
             objectFit="contain"
           />

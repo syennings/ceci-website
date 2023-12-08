@@ -22,10 +22,6 @@
   background-color: var(--hover-color, pink);
 }
 
-.workItem a {
-  color: black;
-}
-
 .tags {
   display: flex;
   gap: 10px;
