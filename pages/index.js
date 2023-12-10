@@ -98,12 +98,11 @@ export default function HomePage() {
           <div key={work.id}>
             <Link href={`/works/${work.slug}`}>
               <Image
+                style={{ objectFit: "contain" }}
                 src={work.images[0]}
                 alt={`Image of ${work.title}`}
-                width={300}
-                height={320}
-                layout="responsive"
-                objectFit="contain"
+                width={600}
+                height={620}
               />
             </Link>
           </div>

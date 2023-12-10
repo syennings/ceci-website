@@ -26,7 +26,6 @@ export default function Login() {
       )}
       {!session && (
         <>
-          <h1 className={styles.title}>Secret Worms</h1>
           <button className={styles.button} onClick={handleSignIn}>
             {" "}
             Secret Login
