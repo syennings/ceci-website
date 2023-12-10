@@ -52,11 +52,13 @@ export default function WorkDetails() {
   }
 
   const handleImageClick = (event) => {
-    const { offsetX, target } = event.nativeEvent;
-    const { width } = target.getBoundingClientRect();
+    const { clientX, target } = event;
+    const { left, width } = target.getBoundingClientRect();
+    const offsetX = clientX - left;
+    const halfWidth = width / 2;
 
     // Check if the click is on the right side (more than half of the width)
-    if (offsetX > width / 2) {
+    if (offsetX > halfWidth) {
       handleClickNext();
     } else {
       handleClickPrevious();
@@ -76,16 +78,23 @@ export default function WorkDetails() {
         </div>
         <p className={styles.counter}> {getImageCounter()} </p>
 
-        <div className={styles.imageContainer} onClick={handleImageClick}>
+        <div className={styles.imageContainer}>
+          <button className={styles.arrowButton} onClick={handleClickPrevious}>
+            &lt; {/* Left arrow character */}
+          </button>
           <Image
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
             src={currentImage}
             alt={data.title}
-            width={400}
-            height={200}
+            width={600}
+            height={620}
             onClick={handleClickNext}
             layout="responsive"
           />
+
+          <button className={styles.arrowButton} onClick={handleClickNext}>
+            &gt; {/* Right arrow character */}
+          </button>
         </div>
         <Link className={styles.back} href="/works">
           Back to All

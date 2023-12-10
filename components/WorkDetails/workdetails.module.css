@@ -58,3 +58,12 @@
   font-family: "Times New Roman", Times, serif;
   font-size: 16pt;
 }
+
+.arrowButton {
+  margin: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #e7dead;
+}
