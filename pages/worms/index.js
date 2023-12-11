@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
+  const [editWormId, setEditWormId] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -134,10 +135,22 @@ export default function CreateWorm() {
     setWormData(worm);
   };
 
+  // const handleEditClick = (worm) => {
+  //   setIsEditMode(true);
+  //   setWormData(worm);
+  //   setEditWormId(worm._id); // Set the worm ID in edit mode
+  // };
+
   const handleCancelEdit = () => {
     setIsEditMode(false);
     setWormData([]);
   };
+
+  // const handleCancelEdit = () => {
+  //   setIsEditMode(false);
+  //   setWormData([]);
+  //   setEditWormId(null); // Clear the worm ID from edit mode
+  // };
 
   const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
   const unlikedWorms = data.filter((worm) => !favoriteStatus[worm._id]);
@@ -168,7 +181,9 @@ export default function CreateWorm() {
           >
             {isFormVisible ? "✖️" : "➕"}
           </button>
-          {isFormVisible && <WormForm addWorm={addWorm} />}
+          {isFormVisible && (
+            <WormForm className={styles.wormForm} addWorm={addWorm} />
+          )}
         </div>
         <h3 className={styles.favorite}>
           {hasFavorites
@@ -239,6 +254,8 @@ export default function CreateWorm() {
                   </p>
                 </li>
               ))}
+            </ul>
+            <div className={styles.wormForm}>
               {isEditMode && (
                 <WormForm
                   wormData={wormData}
@@ -246,17 +263,18 @@ export default function CreateWorm() {
                   isEditMode
                 />
               )}
-            </ul>
+            </div>
           </>
         )}
-
-        <ThemeSwitch />
 
         {showBackToTop && (
           <button className={styles.backToTopButton} onClick={handleBackToTop}>
             Back to Top
           </button>
         )}
+        <div className={styles.theme}>
+          <ThemeSwitch />
+        </div>
       </div>
     </>
   );

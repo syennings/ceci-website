@@ -1,3 +1,5 @@
+import styles from "./wormform.module.css";
+
 export default function WormForm({
   addWorm,
   isEditMode,
@@ -34,11 +36,14 @@ export default function WormForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form className={styles.wormForm} onSubmit={handleSubmit} noValidate>
       <h2>{isEditMode ? "Edit Worm" : "Add A New Worm"}</h2>
       <div>
-        <label htmlFor="label">Name of Worm:</label>
+        <label htmlFor="label" className={styles.input}>
+          Name of Worm:
+        </label>
         <input
+          className={styles.text}
           type="text"
           id="label"
           name="label"
@@ -48,8 +53,11 @@ export default function WormForm({
         />
       </div>
       <div>
-        <label htmlFor="url">Give me Your Worm URL:</label>
+        <label htmlFor="url" className={styles.input}>
+          Give me Your Worm URL:
+        </label>
         <input
+          className={styles.text}
           type="text"
           id="url"
           name="url"
@@ -59,7 +67,7 @@ export default function WormForm({
         />
       </div>
       <div>
-        <button type="submit">
+        <button className={styles.button} type="submit">
           {isEditMode ? "Save Worm Changes" : "Add Worm"}
         </button>
       </div>

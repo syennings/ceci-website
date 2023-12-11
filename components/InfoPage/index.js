@@ -19,6 +19,7 @@ export default function Contact() {
         </div>
 
         <Login />
+
         <h3 className={styles.intro}>Publications </h3>
         <p className={styles.intro}>
           installations 2022 Westwärts Kunsthalle Memmingen A tree; a
@@ -27,12 +28,12 @@ export default function Contact() {
           installation) The Palace and Maritime Silk Road Museum, Fujian Break
           of Gauge Kunstverein Harburger Bahnhof 2018 Flowertokens Trust, Berlin
         </p>
-      </div>
-      <div className={styles.scrollingBanner}>
-        <div className={styles.marquee}>
-          <div className={styles.space}>Big Thanks To Raggy</div>
-          {/* Duplicate the content as needed */}
-          <div className={styles.space}>Big Thanks To Raggy</div>
+        <div className={styles.scrollingBanner}>
+          <div className={styles.marquee}>
+            <div className={styles.space}> Ana Brena Cecilia </div>
+            {/* Duplicate the content as needed */}
+            <div className={styles.space}> 2023 </div>
+          </div>
         </div>
       </div>
     </>

@@ -16,14 +16,14 @@ export default function Login() {
 
   return (
     <div className={styles.loginForm}>
-      {session && (
+      {/* {session && (
         <>
           <p>Signed in as {session.user.name}</p>
           <button className={styles.button} onClick={() => signOut()}>
             Sign Out Here
           </button>
         </>
-      )}
+      )} */}
       {!session && (
         <>
           <button className={styles.button} onClick={handleSignIn}>

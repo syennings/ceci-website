@@ -13,6 +13,8 @@
   margin: 50px auto;
   max-width: 300px; /* Adjust the maximum width as needed */
   width: 100%;
+  position: fixed;
+  right: 0;
 }
 
 .button {
