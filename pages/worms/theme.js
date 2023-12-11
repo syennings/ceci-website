@@ -1,16 +1,13 @@
-const lightTheme = {
-  background: "#ffffff",
-  text: "#000000",
-};
-
-const darkTheme = {
-  background: "#1a1a1a",
-  text: "#ffffff",
-};
-
+// theme.js
 const theme = {
-  light: lightTheme,
-  dark: darkTheme,
+  light: {
+    background: "#ffffff",
+    text: "#000000",
+  },
+  dark: {
+    background: "#FFC0CB",
+    text: "#ffffff",
+  },
 };
 
 export default theme;

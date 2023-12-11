@@ -6,11 +6,13 @@ import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState, useEffect } from "react";
 import ThemeSwitch from "@/components/ThemeSwitch";
+import { useTheme } from "next-themes";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -247,7 +249,8 @@ export default function CreateWorm() {
             </ul>
           </>
         )}
-        <ThemeSwitch></ThemeSwitch>
+
+        <ThemeSwitch />
 
         {showBackToTop && (
           <button className={styles.backToTopButton} onClick={handleBackToTop}>

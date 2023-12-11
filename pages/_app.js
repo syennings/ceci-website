@@ -12,7 +12,13 @@ export default function App({
 }) {
   return (
     <>
-      <ThemeProvider>
+      <ThemeProvider
+        themes={["light", "dark"]}
+        defaultTheme="light"
+        attribute="class"
+        enableSystem={false}
+        storageKey="theme"
+      >
         <SessionProvider session={session}>
           <SWRConfig value={{ fetcher }}>
             <GlobalStyle />
