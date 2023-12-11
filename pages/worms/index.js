@@ -5,8 +5,7 @@ import useSWR from "swr";
 import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState, useEffect } from "react";
-import { useTheme, ThemeProvider } from "styled-components";
-import theme from "./theme";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
@@ -14,7 +13,6 @@ export default function CreateWorm() {
   const router = useRouter();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const { theme, setTheme } = useTheme();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
@@ -22,10 +20,6 @@ export default function CreateWorm() {
       defaultValue: [],
     }
   );
-
-  const toggleNightMode = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -253,10 +247,7 @@ export default function CreateWorm() {
             </ul>
           </>
         )}
-
-        <button className={styles.nightModeButton} onClick={toggleNightMode}>
-          {theme === "light" ? "Night Mode" : "Day Mode"}
-        </button>
+        <ThemeSwitch></ThemeSwitch>
 
         {showBackToTop && (
           <button className={styles.backToTopButton} onClick={handleBackToTop}>
