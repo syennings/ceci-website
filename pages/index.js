@@ -107,7 +107,6 @@ export default function HomePage() {
             </Link>
           </div>
         ))}
-
         {showBackToTop && (
           <button className={styles.backToTopButton} onClick={handleBackToTop}>
             Back to Top

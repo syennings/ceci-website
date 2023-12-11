@@ -2,6 +2,8 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import Header from "@/components/Header";
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "styled-components";
+import theme from "./worms/theme";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -13,9 +15,11 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <SWRConfig value={{ fetcher }}>
-          <GlobalStyle />
-          <Header />
-          <Component {...pageProps} />
+          <ThemeProvider theme={theme} attribute="class">
+            <GlobalStyle />
+            <Header />
+            <Component {...pageProps} />
+          </ThemeProvider>
         </SWRConfig>
       </SessionProvider>
     </>

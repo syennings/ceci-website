@@ -39,6 +39,13 @@
   margin: 0;
 }
 
+.backToTopButton {
+  margin: 20px;
+  padding: 20px;
+  border: none;
+  background: none;
+}
+
 .wormCard {
   overflow: hidden;
   border-radius: 20px;
@@ -91,6 +98,22 @@
 
 .timestamp {
   color: grey;
+}
+
+.nightModeButton {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px;
+  background-color: #2ecc71;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nightModeButton:hover {
+  background-color: #27ae60;
 }
 
 @media (min-width: 768px) {
