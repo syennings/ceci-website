@@ -1,5 +1,5 @@
 // theme.js
-const theme = {
+export const theme = {
   light: {
     background: "#ffffff",
     text: "#000000",
@@ -9,5 +9,3 @@ const theme = {
     text: "#ffffff",
   },
 };
-
-export default theme;
