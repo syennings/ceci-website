@@ -5,6 +5,7 @@ import useSWR from "swr";
 import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
@@ -27,6 +28,28 @@ export default function CreateWorm() {
   if (!data) {
     return <p>Data not found</p>;
   }
+  const date = data[0].updatedAt ?? "nothing found";
+  console.log(
+    "date---------------------------------------------------------------------------------------------------------------------",
+    date
+  );
+
+  const renderTimestamp = (updatedAt) => {
+    if (!updatedAt) {
+      return "";
+    }
+
+    const dateObject = new Date(updatedAt);
+
+    if (isNaN(dateObject.getTime())) {
+      return "Invalid update timestamp";
+    }
+
+    const daysAgo = Math.floor(
+      (Date.now() - dateObject.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    return ` ${daysAgo}d`;
+  };
 
   const handleFavoriteToggle = (wormId) => {
     setFavoriteStatus((prevStatus) => ({
@@ -116,10 +139,10 @@ export default function CreateWorm() {
   return (
     <>
       <div className={styles.main}>
-        <h1 className={styles.WormCrawl}> WormCrawl©</h1>
-        <p> You Have </p>
-        <p className={styles.wormCount}>{wormCount} </p>
-        <p> Worms</p>
+        <h1 className={styles.WormCrawl}> Wormhole©</h1>
+        <i className={styles.caption}>
+          You Got {wormCount} Worms Up Your Alley{" "}
+        </i>
         <div className={styles.containerForm}>
           <button
             onClick={toggleFormVisibility}
@@ -152,13 +175,16 @@ export default function CreateWorm() {
               >
                 {favoriteStatus[worm._id] ? "❤️" : "🤍"}
               </button>
+              <p className={styles.timestamp}>
+                {renderTimestamp(worm.updatedAt)}
+              </p>
             </li>
           ))}
         </ul>
 
         {unlikedWorms.length > 0 && (
           <>
-            <h3>Your Unliked Worms</h3>
+            <h3 className={styles.favorite}>Your Unliked Worms</h3>
             <ul className={styles.imageGrid}>
               {unlikedWorms.map((worm) => (
                 <li key={worm._id} className={styles.wormCard}>
@@ -190,6 +216,9 @@ export default function CreateWorm() {
                   >
                     {favoriteStatus[worm._id] ? "❤️" : "🤍"}
                   </button>
+                  <p className={styles.timestamp}>
+                    {renderTimestamp(worm.updatedAt)}
+                  </p>
                 </li>
               ))}
               {isEditMode && (

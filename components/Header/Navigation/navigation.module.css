@@ -5,12 +5,12 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  background-color: none;
+  background-color: transparent;
   padding: 10px;
   position: fixed;
   width: 100%;
   font-size: 24px;
-  bottom: 0;
+  bottom: 20px;
   z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -26,7 +26,8 @@
 
 /* Change link color on hover */
 .navbar a:hover {
-  color: #eae106;
+  color: pink;
+  border-radius: 10px;
   transform: translateY(-5px);
 }
 
@@ -47,7 +48,7 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  margin-left: 150px;
+  margin-left: 10px;
 }
 
 .menuItems a {
@@ -55,26 +56,19 @@
   text-decoration: none;
   color: black;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 /* Media query to hide the menu toggle on larger screens */
 @media screen and (min-width: 767px) {
   .menuToggle {
-    display: fixed;
-    bottom: 50%;
-  }
-
-  .menuItems {
-    display: flex;
+    display: none;
   }
 }
 
 @media screen and (max-width: 766px) {
   .menuItems {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 200px;
-    margin-left: 5px;
+    margin-bottom: 0px;
+    margin-left: 10px;
   }
 }
