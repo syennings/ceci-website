@@ -11,8 +11,8 @@ export default function WormPicture({ selectedWorm }) {
 
   const router = useRouter();
 
-  console.log("data of worms", data);
-  console.log("art data?!?!?!", dataWorks);
+  // console.log("data of worms", data);
+  // console.log("art data?!?!?!", dataWorks);
 
   if (isLoading || isLoadingWorks) {
     return <h1>Loading...</h1>;

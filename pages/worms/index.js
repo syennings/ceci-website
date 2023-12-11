@@ -5,6 +5,7 @@ import useSWR from "swr";
 import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
@@ -27,6 +28,28 @@ export default function CreateWorm() {
   if (!data) {
     return <p>Data not found</p>;
   }
+  const date = data[0].updatedAt ?? "nothing found";
+  console.log(
+    "date---------------------------------------------------------------------------------------------------------------------",
+    date
+  );
+
+  const renderTimestamp = (updatedAt) => {
+    if (!updatedAt) {
+      return "";
+    }
+
+    const dateObject = new Date(updatedAt);
+
+    if (isNaN(dateObject.getTime())) {
+      return "Invalid update timestamp";
+    }
+
+    const daysAgo = Math.floor(
+      (Date.now() - dateObject.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    return ` ${daysAgo}d`;
+  };
 
   const handleFavoriteToggle = (wormId) => {
     setFavoriteStatus((prevStatus) => ({
@@ -152,6 +175,9 @@ export default function CreateWorm() {
               >
                 {favoriteStatus[worm._id] ? "❤️" : "🤍"}
               </button>
+              <p className={styles.timestamp}>
+                {renderTimestamp(worm.updatedAt)}
+              </p>
             </li>
           ))}
         </ul>
@@ -190,6 +216,9 @@ export default function CreateWorm() {
                   >
                     {favoriteStatus[worm._id] ? "❤️" : "🤍"}
                   </button>
+                  <p className={styles.timestamp}>
+                    {renderTimestamp(worm.updatedAt)}
+                  </p>
                 </li>
               ))}
               {isEditMode && (

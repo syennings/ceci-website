@@ -26,7 +26,7 @@
 
 /* Change link color on hover */
 .navbar a:hover {
-  color: #eae106;
+  background-color: pink;
   transform: translateY(-5px);
 }
 
