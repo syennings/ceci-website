@@ -154,7 +154,7 @@ export default function CreateWorm() {
         </div>
         <h3 className={styles.favorite}>
           {hasFavorites
-            ? "Your Favorite Worms"
+            ? "Great Worms"
             : "Hmm, you haven't like any worms yet..."}
         </h3>
         <ul className={styles.imageGrid}>
@@ -184,7 +184,7 @@ export default function CreateWorm() {
 
         {unlikedWorms.length > 0 && (
           <>
-            <h3 className={styles.favorite}>Your Unliked Worms</h3>
+            <h3 className={styles.favorite}>Not So Great Worms</h3>
             <ul className={styles.imageGrid}>
               {unlikedWorms.map((worm) => (
                 <li key={worm._id} className={styles.wormCard}>

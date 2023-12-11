@@ -1,12 +1,9 @@
-import { useRouter } from "next/router";
 import ContactPage from "../ContactPage";
 import Link from "next/link";
 import Login from "@/components/Login/login";
 import styles from "./contact.module.css";
 
 export default function Contact() {
-  const router = useRouter();
-
   return (
     <>
       <div className={styles.contactContainer}>
@@ -19,6 +16,7 @@ export default function Contact() {
         </div>
 
         <Login />
+
         <h3 className={styles.intro}>Publications </h3>
         <p className={styles.intro}>
           installations 2022 Westwärts Kunsthalle Memmingen A tree; a
