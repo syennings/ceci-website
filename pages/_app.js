@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import Header from "@/components/Header";
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -11,13 +12,21 @@ export default function App({
 }) {
   return (
     <>
-      <SessionProvider session={session}>
-        <SWRConfig value={{ fetcher }}>
-          <GlobalStyle />
-          <Header />
-          <Component {...pageProps} />
-        </SWRConfig>
-      </SessionProvider>
+      <ThemeProvider
+        themes={["light", "dark"]}
+        defaultTheme="light"
+        attribute="class"
+        enableSystem={false}
+        storageKey="theme"
+      >
+        <SessionProvider session={session}>
+          <SWRConfig value={{ fetcher }}>
+            <GlobalStyle />
+            <Header />
+            <Component {...pageProps} />
+          </SWRConfig>
+        </SessionProvider>
+      </ThemeProvider>
     </>
   );
 }

@@ -4,22 +4,36 @@ import WormPicture from "@/components/Worms";
 import useSWR from "swr";
 import styles from "./worms.module.css";
 import useLocalStorageState from "use-local-storage-state";
-import { useState } from "react";
-import { formatDistanceToNow } from "date-fns";
+import { useState, useEffect } from "react";
+import ThemeSwitch from "@/components/ThemeSwitch";
+import { useTheme } from "next-themes";
 
 export default function CreateWorm() {
   const [wormData, setWormData] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
   const { data, isLoading, mutate } = useSWR(`/api/worms/`);
   const [isFormVisible, setIsFormVisible] = useState(false);
-
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
     "favoritesInfo",
     {
       defaultValue: [],
     }
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 200); // Adjust the scroll threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -136,6 +150,10 @@ export default function CreateWorm() {
     setWormData([]); // Clear wormData when showing/hiding the form
   };
 
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <div className={styles.main}>
@@ -230,6 +248,14 @@ export default function CreateWorm() {
               )}
             </ul>
           </>
+        )}
+
+        <ThemeSwitch />
+
+        {showBackToTop && (
+          <button className={styles.backToTopButton} onClick={handleBackToTop}>
+            Back to Top
+          </button>
         )}
       </div>
     </>
