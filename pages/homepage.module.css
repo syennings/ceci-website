@@ -1,13 +1,16 @@
 .homePage {
-  /* Add any additional styles for the overall page here */
-
   color: black;
   padding: 20px;
 }
 
 .contentWrapper {
   display: flex;
+  margin-top: 100px;
   margin-left: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
 }
 
 .title {
@@ -16,7 +19,6 @@
 }
 
 .text {
-  margin-left: 80px;
   max-width: 300px;
   font-size: 18px;
   opacity: 0; /* Set initial opacity to 0 */

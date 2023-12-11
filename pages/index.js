@@ -70,7 +70,6 @@ export default function HomePage() {
       <div className={styles.homePage}>
         <div className={styles.contentWrapper}>
           <WormPicture className={styles.worm} selectedWorm={selectedWorm} />
-
           <h3 className={styles.text}>
             <Link href="/info">Ana Breña Cecilia</Link> is a Mexican designer
             currently working with{" "}
@@ -83,35 +82,39 @@ export default function HomePage() {
             </a>
             <p>Ceci is basically, Berlins biggest underground designer.</p>
           </h3>
+          <SearchBar
+            uniqueTypes={uniqueTypes}
+            workData={workData}
+            onSearch={(query, type) => {
+              setSearchQuery(query);
+              setSelectedType(type);
+            }}
+          />
         </div>
-        <SearchBar
-          uniqueTypes={uniqueTypes}
-          workData={workData}
-          onSearch={(query, type) => {
-            setSearchQuery(query);
-            setSelectedType(type);
-          }}
-        />
-      </div>
-      <div className={styles.images}>
-        {displayedWorks.map((work) => (
-          <div key={work.id}>
-            <Link href={`/works/${work.slug}`}>
-              <Image
-                style={{ objectFit: "contain" }}
-                src={work.images[0]}
-                alt={`Image of ${work.title}`}
-                width={600}
-                height={620}
-              />
-            </Link>
-          </div>
-        ))}
-        {showBackToTop && (
-          <button className={styles.backToTopButton} onClick={handleBackToTop}>
-            Back to Top
-          </button>
-        )}
+
+        <div className={styles.images}>
+          {displayedWorks.map((work) => (
+            <div key={work.id}>
+              <Link href={`/works/${work.slug}`}>
+                <Image
+                  style={{ objectFit: "contain" }}
+                  src={work.images[0]}
+                  alt={`Image of ${work.title}`}
+                  width={600}
+                  height={620}
+                />
+              </Link>
+            </div>
+          ))}
+          {showBackToTop && (
+            <button
+              className={styles.backToTopButton}
+              onClick={handleBackToTop}
+            >
+              Back to Top
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
