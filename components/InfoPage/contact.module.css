@@ -1,3 +1,10 @@
+.main {
+  background-image: url("https://res.cloudinary.com/ddgzpe5cw/image/upload/v1702378734/worms_z3e9se.png");
+  background-size: contain; /* Ensure the background covers the entire container */
+  background-repeat: no-repeat;
+  background-position: left 300px center;
+}
+
 .contactContainer {
   margin-left: 20px;
   padding: 20px;
