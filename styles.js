@@ -14,6 +14,7 @@ export default createGlobalStyle`
     line-height: 1.5;
     color: #333;
     font-weight: 100; 
+    
   }
 
   a {

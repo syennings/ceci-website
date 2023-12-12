@@ -9,6 +9,12 @@
   width: 100vw;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
+  /* background: linear-gradient(to top, blue 0%, pink 100%); */
+  /* background: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%); */
+  background-image: url("https://media0.giphy.com/media/YrAoVhdooOvL1bwCXK/giphy.gif?cid=ecf05e479h2x4v8wc07dr64aerkg86r4mktxy9rfgyj9ly94&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+  background-size: cover; /* Ensure the background covers the entire container */
+  background-repeat: no-repeat;
+  color: white;
 }
 
 .caption {
@@ -18,8 +24,8 @@
 .imageGrid {
   display: grid;
   gap: 10px;
-  padding: 60px;
-  margin-bottom: 50px;
+  /* padding: 60px; */
+  /* margin-bottom: 50px; */
 }
 
 .deleteButton {
@@ -49,10 +55,11 @@
 .wormCard {
   overflow: hidden;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.01); /* Add box-shadow for a card-like appearance */
+  box-shadow: 0 4px 8px rgba(0.1, 0, 0, 0.01); /* Add box-shadow for a card-like appearance */
   list-style-type: none;
   padding: 30px;
   margin: 10px;
+  background-color: rgba(255, 255, 255);
 }
 
 .WormCrawl {
@@ -114,6 +121,40 @@
 
 .nightModeButton:hover {
   background-color: #27ae60;
+}
+
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+  width: 450px;
+  color: #eee;
+  font-family: sans-serif;
+  margin-top: 30px;
+  background-color: rgba(21, 23, 43, 0.444);
+  backdrop-filter: blur(10px);
+}
+
+.theme {
+  margin: 80px;
+}
+
+.wormPicture {
+  position: absolute;
+  top: -10px; /* Adjust this value to move the image outside the top of the card */
+  left: -10px; /* Adjust this value to move the image outside the left of the card */
+  right: -10px; /* Adjust this value to move the image outside the right of the card */
+  bottom: -10px; /* Adjust this value to move the image outside the bottom of the card */
+  width: calc(
+    100% + 20px
+  ); /* Adjust this value to include the negative margins */
+  height: calc(
+    100% + 20px
+  ); /* Adjust this value to include the negative margins */
+  object-fit: cover; /* Ensure the image covers the entire area */
+  z-index: -1; /* Move the image behind the card content */
 }
 
 @media (min-width: 768px) {
