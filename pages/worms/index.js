@@ -188,7 +188,7 @@ export default function CreateWorm() {
         <h3 className={styles.favorite}>
           {hasFavorites
             ? "Your Favorite Worms"
-            : "Hmm, you haven't like any worms yet..."}
+            : "Hmm, you haven't liked any worms yet..."}
         </h3>
         <ul className={styles.imageGrid}>
           {favoriteWorms.map((worm) => (
