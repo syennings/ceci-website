@@ -10,7 +10,11 @@
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   /* background: linear-gradient(to top, blue 0%, pink 100%); */
-  background: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%);
+  /* background: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%); */
+  background-image: url("https://media0.giphy.com/media/YrAoVhdooOvL1bwCXK/giphy.gif?cid=ecf05e479h2x4v8wc07dr64aerkg86r4mktxy9rfgyj9ly94&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+  background-size: cover; /* Ensure the background covers the entire container */
+  background-repeat: no-repeat;
+  color: white;
 }
 
 .caption {
@@ -55,7 +59,7 @@
   list-style-type: none;
   padding: 30px;
   margin: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255);
 }
 
 .WormCrawl {
@@ -123,13 +127,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #15172b;
   border-radius: 20px;
   padding: 20px;
-  width: 320px;
+  width: 450px;
   color: #eee;
   font-family: sans-serif;
   margin-top: 30px;
+  background-color: rgba(21, 23, 43, 0.444);
+  backdrop-filter: blur(10px);
 }
 
 .theme {

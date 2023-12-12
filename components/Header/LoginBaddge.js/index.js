@@ -16,7 +16,7 @@ export default function LoginBadge() {
             width={100}
             height={100}
           />
-          <p>Signed in as {session.user.name}</p>
+          <p>Hi {session.user.name}</p>
           <button className={styles.button} onClick={() => signOut()}>
             Sign Out Here
           </button>

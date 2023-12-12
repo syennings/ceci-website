@@ -54,5 +54,14 @@
   font-weight: 600;
   margin-top: 10px;
   display: block;
-  padding: 10px;
+  padding-bottom: 10px;
+}
+
+.text {
+  display: flex;
+  border: none;
+  background: none;
+  color: lightblue;
+  border-bottom: 1px solid white;
+  width: 100%;
 }
