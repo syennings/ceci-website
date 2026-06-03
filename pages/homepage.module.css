@@ -5,8 +5,8 @@
 
 .contentWrapper {
   display: flex;
-  margin-top: 100px;
-  margin-left: 20px;
+  margin-top: 10px;
+  margin-left: 24px;
   justify-content: space-between;
   flex-direction: column;
   position: fixed;
@@ -58,3 +58,4 @@
 .homePage a:hover {
   background-color: pink;
 }
+

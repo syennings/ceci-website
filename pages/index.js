@@ -80,7 +80,7 @@ export default function HomePage() {
             <a href="https://maps.app.goo.gl/xLqE6SFSnQnYHpVr8" target="_blank">
               Berlin.
             </a>
-            <p>Ceci is basically, Berlins biggest underground designer. </p>
+            
           </h3>
           <SearchBar
             uniqueTypes={uniqueTypes}
