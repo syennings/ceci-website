@@ -26,7 +26,7 @@ export default function HomePage() {
   }, []);
 
   if (wormsAreLoading || worksAreLoading) {
-    return <h1>Bespoke worms are loading now :) </h1>;
+    return <h5>   ... some worms are loading now :) </h5>;
   }
 
   if (!wormData || !workData) {
