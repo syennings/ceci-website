@@ -26,7 +26,7 @@ export default function HomePage() {
   }, []);
 
   if (wormsAreLoading || worksAreLoading) {
-    return <h1>Loading...</h1>;
+    return <h1>Bespoke worms are loading now :) </h1>;
   }
 
   if (!wormData || !workData) {
@@ -71,7 +71,7 @@ export default function HomePage() {
         <div className={styles.contentWrapper}>
           <WormPicture className={styles.worm} selectedWorm={selectedWorm} />
           <h3 className={styles.text}>
-            <Link href="/info">Ana Breña Cecilia</Link> is a Mexican designer
+            <Link href="/contact">Ana Breña Cecilia</Link> is a Mexican designer
             currently working with{" "}
             <a href="https://www.santiagodasilva.com/" target="_blank">
               Studio Santiago de Silva
@@ -80,7 +80,7 @@ export default function HomePage() {
             <a href="https://maps.app.goo.gl/xLqE6SFSnQnYHpVr8" target="_blank">
               Berlin.
             </a>
-            <p>Ceci is basically, Berlins biggest underground designer.</p>
+            <p>Ceci is basically, Berlins biggest underground designer. </p>
           </h3>
           <SearchBar
             uniqueTypes={uniqueTypes}
@@ -91,6 +91,8 @@ export default function HomePage() {
             }}
           />
         </div>
+
+     
 
         <div className={styles.images}>
           {displayedWorks.map((work) => (
