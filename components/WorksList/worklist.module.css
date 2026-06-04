@@ -12,6 +12,7 @@
   top: 75%;
   right: 35%;
   display: none;
+  z-index: 100;
 }
 
 .workItem:hover .preview {
@@ -20,6 +21,8 @@
 
 .workItem:hover {
   background-color: var(--hover-color, pink);
+  z-index: 10;
+  position: relative;
 }
 
 .tags {
