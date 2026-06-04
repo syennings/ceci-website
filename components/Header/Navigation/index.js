@@ -22,11 +22,12 @@ export function Navigation() {
             <Link href="/works" passHref>
               <div className={styles.works}>Works</div>
             </Link>
-            {session ? (
+            {/* was: session-gated — worms is now public */}
+            {/* {session ? (
               <Link href="/worms" passHref>
                 <div className={styles.contact}>Worms</div>
               </Link>
-            ) : null}
+            ) : null} */}
             <Link href="/contact" passHref>
               <div className={styles.info}>Contact</div>
             </Link>
