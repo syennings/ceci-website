@@ -84,14 +84,13 @@ export default function WorkDetails() {
           <button className={styles.arrowButton} onClick={handleClickPrevious}>
             &lt; {/* Left arrow character */}
           </button>
+          {/* fill available space, contain keeps natural ratio — no skewing */}
           <Image
-            style={{ objectFit: "contain" }}
             src={currentImage}
             alt={data.title}
-            width={600}
-            height={620}
-            onClick={handleClickNext}
-            layout="responsive"
+            fill
+            style={{ objectFit: "contain", cursor: "pointer", padding: "0 60px" }}
+            onClick={handleImageClick}
           />
 
           <button className={styles.arrowButton} onClick={handleClickNext}>
