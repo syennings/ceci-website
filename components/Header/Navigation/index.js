@@ -20,7 +20,7 @@ export function Navigation() {
         {isMenuOpen && (
           <div className={styles.menuItems}>
             <Link href="/works" passHref>
-              <div className={styles.works}>Works</div>
+              <div className={styles.works}>Work</div>
             </Link>
             {/* was: session-gated — worms is now public */}
             {/* {session ? (

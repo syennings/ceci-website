@@ -15,10 +15,12 @@ export default function WorkDetails() {
   console.log("where is my data????", data);
   console.log("slug?????", slug);
 
-  // useEffect(() => {
-  //   const setBackgroundColor = data?.color || "#FFFFFF";
-  //   document.querySelector("body").style.backgroundColor = setBackgroundColor;
-  // }, [data]);
+  useEffect(() => {
+    // set background on body so it covers full viewport including behind the sidebar
+    document.querySelector("body").style.backgroundColor = data?.color || "#FFFFFF";
+    // reset when leaving the page
+    return () => { document.querySelector("body").style.backgroundColor = ""; };
+  }, [data]);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
