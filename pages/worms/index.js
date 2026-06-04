@@ -64,6 +64,7 @@ export default function WormGame() {
 
   return (
     <div className={styles.game}>
+      <p className={styles.hint}>Find the shy worm hiding behind the letters.</p>
       {/* desktop: scattered absolute layout */}
       <div className={styles.scattered}>
         {layout.map((item, i) => (

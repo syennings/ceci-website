@@ -1,3 +1,16 @@
+.hint {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  font-family: monospace;
+  font-size: 13px;
+  color: black;
+  z-index: 200;
+  margin: 0;
+  padding: 8px 12px;
+  pointer-events: none;
+}
+
 /* full viewport game canvas */
 .game {
   position: relative;
