@@ -3,16 +3,7 @@
   padding: 20px;
 }
 
-.contentWrapper {
-  display: flex;
-  margin-top: 10px;
-  margin-left: 24px;
-  justify-content: space-between;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  padding-top: 80px; /* push content below fixed header */
-}
+/* contentWrapper removed — sidebar now lives globally in _app.js */
 
 .title {
   flex: 1;
