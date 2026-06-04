@@ -70,6 +70,8 @@ export default function WormGame() {
             top: `${item.top}%`,
             left: `${item.left}%`,
             transform: `rotate(${item.rotation}deg)`,
+            // hiding word always on top so worm is never blocked by other words
+            zIndex: item.isHiding ? 100 : 1,
           }}
           onClick={() => handleWordClick(i)}
         >
