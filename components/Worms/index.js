@@ -45,7 +45,7 @@ export default function WormPicture({ selectedWorm }) {
           />
 
           <Link href={`/works/${randomWork.slug}`}>
-            <p> {selectedWorm.label}</p>
+            {/* <p> {selectedWorm.label}</p> */}
           </Link>
         </div>
       </Draggable>

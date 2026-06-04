@@ -4,7 +4,7 @@ import styles from "./homebutton.module.css";
 export default function HomeButton() {
   return (
     <Link href="/">
-      <h1 className={styles.homebutton}>Ana Brena Cecilia</h1>
+      <h1 className={styles.homebutton}>Ana Cecilia Breña</h1>
     </Link>
   );
 }

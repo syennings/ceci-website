@@ -23,7 +23,10 @@ export default function App({
           <SWRConfig value={{ fetcher }}>
             <GlobalStyle />
             <Header />
-            <Component {...pageProps} />
+            {/* padding-top clears the fixed header so content doesn't hide under it */}
+            <main style={{ paddingTop: "80px" }}>
+              <Component {...pageProps} />
+            </main>
           </SWRConfig>
         </SessionProvider>
       </ThemeProvider>

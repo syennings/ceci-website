@@ -3,16 +3,16 @@
 /* Basic styling for the navigation bar */
 .navbar {
   display: flex;
-  justify-content: left;
+  justify-content: flex-end;
   align-items: center;
   background-color: transparent;
   padding: 10px;
-  position: fixed;
-  width: 100%;
   font-size: 24px;
-  bottom: 20px;
-  z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 /* Style for the navigation links */
