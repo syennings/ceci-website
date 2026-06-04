@@ -12,15 +12,12 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  // open by default on desktop, closed on mobile
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // start closed, set correct default after mount based on screen size
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    // close sidebar by default on small screens
-    if (window.innerWidth < 768) {
-      setSidebarOpen(false);
-    }
-  }, []);
+    setSidebarOpen(window.innerWidth >= 768);
+  }, []); // only on mount — user can toggle freely after
 
   return (
     <>
@@ -65,6 +62,8 @@ export default function App({
                 style={{
                   marginLeft: sidebarOpen ? "280px" : "0px",
                   flex: 1,
+                  minWidth: 0, /* prevents flex children from overflowing */
+                  overflow: "hidden",
                   transition: "margin-left 0.3s ease",
                 }}
               >
