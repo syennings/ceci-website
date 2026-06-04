@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Draggable from "react-draggable";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 import styles from "./worms.module.css";
 
 export default function WormPicture({ selectedWorm }) {
@@ -10,6 +11,7 @@ export default function WormPicture({ selectedWorm }) {
   const { data: dataWorks, isLoading: isLoadingWorks } = useSWR(`/api/works/`);
 
   const router = useRouter();
+  const dragged = useRef(false); // track if user dragged or just clicked
 
   // console.log("data of worms", data);
   // console.log("art data?!?!?!", dataWorks);
@@ -31,8 +33,8 @@ export default function WormPicture({ selectedWorm }) {
 
   return (
     <>
-      <Draggable>
-        <div style={{ cursor: "grab" }}>
+      {/* <Draggable> commented out — fix click + drag conflict later */}
+        <Link href="/worms" style={{ cursor: "pointer", display: "block" }}>
           <Image
             style={{ objectFit: "contain" }}
             className={styles.worm}
@@ -43,12 +45,8 @@ export default function WormPicture({ selectedWorm }) {
             layout="fixed"
             objectFit="contain"
           />
-
-          <Link href={`/works/${randomWork.slug}`}>
-            {/* <p> {selectedWorm.label}</p> */}
-          </Link>
-        </div>
-      </Draggable>
+        </Link>
+      {/* </Draggable> */}
     </>
   );
 }

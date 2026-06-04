@@ -71,7 +71,7 @@ export default function HomePage() {
         <div className={styles.contentWrapper}>
           <WormPicture className={styles.worm} selectedWorm={selectedWorm} />
           <h3 className={styles.text}>
-            <Link href="/contact">Ana Breña Cecilia</Link> is a Mexican designer
+            <Link href="/contact">Ana Cecilia Breña</Link> is a Mexican designer
             currently working with{" "}
             <a href="https://www.santiagodasilva.com/" target="_blank">
               Studio Santiago de Silva

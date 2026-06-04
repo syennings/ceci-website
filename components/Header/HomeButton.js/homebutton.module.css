@@ -1,8 +1,10 @@
 .homebutton {
-  color: blue;
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 20px;
-  border-bottom: 2px solid black;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  /* border-bottom: 2px solid black; */
   text-decoration: none;
+  background-color: transparent;
   /* removed: position fixed, top, z-index, background-color — parent header handles these */
 }
