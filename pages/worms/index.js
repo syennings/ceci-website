@@ -1,281 +1,97 @@
-import { useRouter } from "next/router";
-import WormForm from "@/components/WormForm/index.js";
-import WormPicture from "@/components/Worms";
 import useSWR from "swr";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import styles from "./worms.module.css";
-import useLocalStorageState from "use-local-storage-state";
-import { useState, useEffect } from "react";
-import ThemeSwitch from "@/components/ThemeSwitch";
-import { useTheme } from "next-themes";
 
-export default function CreateWorm() {
-  const [wormData, setWormData] = useState([]);
-  const [editWormId, setEditWormId] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
-  const { data, isLoading, mutate } = useSWR(`/api/worms/`);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-  const [favoriteStatus, setFavoriteStatus] = useLocalStorageState(
-    "favoritesInfo",
-    {
-      defaultValue: [],
-    }
-  );
+const WORDS = [
+  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+  "one", "two", "three", "four", "five",
+  "Apple", "Pear", "Plum", "Strawberry", "Orange",
+  "hungry", "full", "small", "BIG", "Beautiful",
+];
+
+function generateLayout(hidingIndex) {
+  const shuffled = [...WORDS].sort(() => Math.random() - 0.5);
+  return shuffled.map((word, i) => ({
+    word,
+    top: 5 + Math.random() * 78,
+    left: 2 + Math.random() * 65,
+    rotation: -12 + Math.random() * 24,
+    fontSize: 20 + Math.floor(Math.random() * 140), // range: 20px–160px for strong contrast
+    isHiding: i === hidingIndex,
+  }));
+}
+
+export default function WormGame() {
+  const { data: worms, isLoading } = useSWR("/api/worms/");
+  const wormsRef = useRef(worms); // ref so setTimeout always has fresh data
+  const [layout, setLayout] = useState([]);
+  const [hidingIndex, setHidingIndex] = useState(0);
+  const [currentWorm, setCurrentWorm] = useState(null);
+  const [found, setFound] = useState(false);
+  const [wiggling, setWiggling] = useState(false);
+
+  // keep ref in sync
+  useEffect(() => { wormsRef.current = worms; }, [worms]);
+
+  function setupRound() {
+    const wormList = wormsRef.current;
+    if (!wormList || wormList.length === 0) return;
+    const hiding = Math.floor(Math.random() * WORDS.length);
+    setHidingIndex(hiding);
+    setLayout(generateLayout(hiding));
+    setCurrentWorm(wormList[Math.floor(Math.random() * wormList.length)]);
+    setFound(false);
+    setWiggling(false);
+  }
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 200); // Adjust the scroll threshold as needed
-    };
+    if (!worms || worms.length === 0) return;
+    setupRound();
+  }, [worms]);
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (!data) {
-    return <p>Data not found</p>;
-  }
-  const date = data[0].updatedAt ?? "nothing found";
-  console.log(
-    "date---------------------------------------------------------------------------------------------------------------------",
-    date
-  );
-
-  const renderTimestamp = (updatedAt) => {
-    if (!updatedAt) {
-      return "";
-    }
-
-    const dateObject = new Date(updatedAt);
-
-    if (isNaN(dateObject.getTime())) {
-      return "Invalid update timestamp";
-    }
-
-    const daysAgo = Math.floor(
-      (Date.now() - dateObject.getTime()) / (1000 * 60 * 60 * 24)
-    );
-    return ` ${daysAgo}d`;
+  const handleWordClick = (index) => {
+    if (found || index !== hidingIndex) return;
+    setFound(true);
+    setWiggling(true);
+    // after wiggle, start a fresh round
+    setTimeout(() => setupRound(), 2000);
   };
 
-  const handleFavoriteToggle = (wormId) => {
-    setFavoriteStatus((prevStatus) => ({
-      ...prevStatus,
-      [wormId]: !prevStatus[wormId],
-    }));
-  };
-
-  const hasFavorites = Object.values(favoriteStatus).some((status) => status);
-
-  async function addWorm(worm) {
-    const response = await fetch("/api/worms", {
-      method: "POST",
-      body: JSON.stringify(worm),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (response.ok) {
-      await response.json();
-      mutate();
-      router.push("/worms");
-    } else {
-      console.error(`Error: ${response.status}`);
-    }
-  }
-
-  async function handleDelete(id) {
-    const shouldDelete = window.confirm(
-      "Are you sure you want to delete this worm?"
-    );
-    if (!shouldDelete) {
-      return;
-    }
-
-    const response = await fetch(`/api/worms/${id}`, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) {
-      console.log("Error deleting worm. Status:", response.status);
-      return;
-    }
-
-    console.log("Worm deleted successfully");
-
-    mutate();
-    router.push("/worms");
-  }
-
-  async function handleEdit(editedWorm) {
-    const response = await fetch(`/api/worms/${editedWorm._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedWorm),
-    });
-
-    if (response.ok) {
-      mutate();
-      setIsEditMode(false); // Exit edit mode after successful edit
-    } else {
-      console.error(`Error: ${response.status}`);
-    }
-  }
-
-  const handleEditClick = (worm) => {
-    setIsEditMode(true);
-    setWormData(worm);
-  };
-
-  // const handleEditClick = (worm) => {
-  //   setIsEditMode(true);
-  //   setWormData(worm);
-  //   setEditWormId(worm._id); // Set the worm ID in edit mode
-  // };
-
-  const handleCancelEdit = () => {
-    setIsEditMode(false);
-    setWormData([]);
-  };
-
-  // const handleCancelEdit = () => {
-  //   setIsEditMode(false);
-  //   setWormData([]);
-  //   setEditWormId(null); // Clear the worm ID from edit mode
-  // };
-
-  const favoriteWorms = data.filter((worm) => favoriteStatus[worm._id]);
-  const unlikedWorms = data.filter((worm) => !favoriteStatus[worm._id]);
-
-  const wormCount = data ? data.length : 0;
-
-  const toggleFormVisibility = () => {
-    setIsFormVisible((prev) => !prev);
-    setIsEditMode(false); // Close edit mode when showing/hiding the form
-    setWormData([]); // Clear wormData when showing/hiding the form
-  };
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  if (isLoading || !currentWorm || layout.length === 0) return null;
 
   return (
-    <>
-      <div className={styles.main}>
-        <h1 className={styles.WormCrawl}> Wormhole©</h1>
-        <i className={styles.caption}>
-          You Got {wormCount} Worms Up Your Alley{" "}
-        </i>
-        <div className={styles.containerForm}>
-          <button
-            onClick={toggleFormVisibility}
-            className={styles.toggleFormButton}
-          >
-            {isFormVisible ? "✖️" : "➕"}
-          </button>
-          {isFormVisible && (
-            <WormForm className={styles.wormForm} addWorm={addWorm} />
-          )}
-        </div>
-        <h3 className={styles.favorite}>
-          {hasFavorites
-            ? "Your Favorite Worms"
-            : "Hmm, you haven't like any worms yet..."}
-        </h3>
-        <ul className={styles.imageGrid}>
-          {favoriteWorms.map((worm) => (
-            <li key={worm._id} className={styles.wormCard}>
-              <WormPicture selectedWorm={worm} />
-              <button
-                onClick={() => handleDelete(worm._id)}
-                className={styles.deleteButton}
-              >
-                <span role="img" aria-label="A cross indicating deletion">
-                  ❌
-                </span>
-              </button>
-              <button
-                onClick={() => handleFavoriteToggle(worm._id)}
-                className={styles.likeButton}
-              >
-                {favoriteStatus[worm._id] ? "❤️" : "🤍"}
-              </button>
-              <p className={styles.timestamp}>
-                {renderTimestamp(worm.updatedAt)}
-              </p>
-            </li>
-          ))}
-        </ul>
-
-        {unlikedWorms.length > 0 && (
-          <>
-            <h3 className={styles.favorite}>Your Unliked Worms</h3>
-            <ul className={styles.imageGrid}>
-              {unlikedWorms.map((worm) => (
-                <li key={worm._id} className={styles.wormCard}>
-                  <WormPicture selectedWorm={worm} />
-                  <button
-                    onClick={() => handleDelete(worm._id)}
-                    className={styles.deleteButton}
-                  >
-                    <span role="img" aria-label="A cross indicating deletion">
-                      ❌
-                    </span>
-                  </button>
-
-                  <button
-                    className={styles.editButton}
-                    onClick={() => {
-                      if (isEditMode && worm._id === wormData._id) {
-                        handleCancelEdit(); // Call handleCancelEdit if clicking the edit button again
-                      } else {
-                        handleEditClick(worm);
-                      }
-                    }}
-                  >
-                    {isEditMode && worm._id === wormData._id ? "🚫" : "✏️"}
-                  </button>
-                  <button
-                    onClick={() => handleFavoriteToggle(worm._id)}
-                    className={styles.likeButton}
-                  >
-                    {favoriteStatus[worm._id] ? "❤️" : "🤍"}
-                  </button>
-                  <p className={styles.timestamp}>
-                    {renderTimestamp(worm.updatedAt)}
-                  </p>
-                </li>
-              ))}
-            </ul>
-            <div className={styles.wormForm}>
-              {isEditMode && (
-                <WormForm
-                  wormData={wormData}
-                  handleEdit={handleEdit}
-                  isEditMode
-                />
-              )}
+    <div className={styles.game}>
+      {layout.map((item, i) => (
+        <div
+          key={i}
+          className={styles.wordWrapper}
+          style={{
+            top: `${item.top}%`,
+            left: `${item.left}%`,
+            transform: `rotate(${item.rotation}deg)`,
+          }}
+          onClick={() => handleWordClick(i)}
+        >
+          {item.isHiding && (
+            <div
+              className={`${styles.wormSpot} ${found ? styles.wormVisible : ""} ${wiggling ? styles.wiggle : ""}`}
+              onClick={(e) => { e.stopPropagation(); handleWordClick(i); }}
+            >
+              <Image
+                src={currentWorm.url}
+                alt={currentWorm.label || "worm"}
+                width={80}
+                height={80}
+                style={{ objectFit: "contain", pointerEvents: "none" }}
+              />
             </div>
-          </>
-        )}
-
-        {showBackToTop && (
-          <button className={styles.backToTopButton} onClick={handleBackToTop}>
-            Back to Top
-          </button>
-        )}
-        <div className={styles.theme}>
-          <ThemeSwitch />
+          )}
+          <span className={styles.word} style={{ fontSize: `${item.fontSize}px` }}>
+            {item.word}
+          </span>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 }

@@ -1,177 +1,55 @@
-/* CreateWorm.module.css */
-
-.main {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  min-height: 100vh;
-  width: 100vw;
-  flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
-  /* background: linear-gradient(to top, blue 0%, pink 100%); */
-  /* background: linear-gradient(to top, #df89b5 0%, #bfd9fe 100%); */
-  background-image: url("https://media0.giphy.com/media/YrAoVhdooOvL1bwCXK/giphy.gif?cid=ecf05e479h2x4v8wc07dr64aerkg86r4mktxy9rfgyj9ly94&ep=v1_gifs_search&rid=giphy.gif&ct=g");
-  background-size: cover; /* Ensure the background covers the entire container */
-  background-repeat: no-repeat;
-  color: white;
-}
-
-.caption {
-  padding: 20px;
-}
-
-.imageGrid {
-  display: grid;
-  gap: 10px;
-  /* padding: 60px; */
-  /* margin-bottom: 50px; */
-}
-
-.deleteButton {
-  background: transparent;
-  border: none;
-  margin: 0;
-}
-
-.likeButton {
-  background: transparent;
-  border: none;
-  margin: 0;
-}
-.editButton {
-  background: transparent;
-  border: none;
-  margin: 0;
-}
-
-.backToTopButton {
-  margin: 20px;
-  padding: 20px;
-  border: none;
-  background: none;
-}
-
-.wormCard {
+/* full viewport game canvas */
+.game {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
   overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0.1, 0, 0, 0.01); /* Add box-shadow for a card-like appearance */
-  list-style-type: none;
-  padding: 30px;
-  margin: 10px;
-  background-color: rgba(255, 255, 255);
+  background: transparent;
+  cursor: default;
 }
 
-.WormCrawl {
-  text-align: center;
-  font-size: 80px;
-}
-
-.toggleFormButton {
-  background-color: #fff;
-  border: 0 solid #e2e8f0;
-  border-radius: 1.5rem;
-  box-sizing: border-box;
-  color: #0d172a;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 1rem 1.6rem;
-  text-align: center;
-  text-decoration: none #0d172a solid;
-  text-decoration-thickness: auto;
-  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.toggleFormButton:hover {
-  background-color: pink;
-  color: #fff;
-}
-
-.favorite {
-  margin-top: 20px;
-  padding: 20px;
-  font-size: 30px;
-}
-
-.timestamp {
-  color: grey;
-}
-
-.nightModeButton {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  padding: 10px;
-  background-color: #2ecc71;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.nightModeButton:hover {
-  background-color: #27ae60;
-}
-
-.containerForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-  padding: 20px;
-  width: 450px;
-  color: #eee;
-  font-family: sans-serif;
-  margin-top: 30px;
-  background-color: rgba(21, 23, 43, 0.444);
-  backdrop-filter: blur(10px);
-}
-
-.theme {
-  margin: 80px;
-}
-
-.wormPicture {
+/* each word is absolutely positioned */
+.wordWrapper {
   position: absolute;
-  top: -10px; /* Adjust this value to move the image outside the top of the card */
-  left: -10px; /* Adjust this value to move the image outside the left of the card */
-  right: -10px; /* Adjust this value to move the image outside the right of the card */
-  bottom: -10px; /* Adjust this value to move the image outside the bottom of the card */
-  width: calc(
-    100% + 20px
-  ); /* Adjust this value to include the negative margins */
-  height: calc(
-    100% + 20px
-  ); /* Adjust this value to include the negative margins */
-  object-fit: cover; /* Ensure the image covers the entire area */
-  z-index: -1; /* Move the image behind the card content */
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
 }
 
-@media (min-width: 768px) {
-  .button-81 {
-    font-size: 1.125rem;
-    padding: 1rem 2rem;
-  }
+/* the word itself — sits on top of worm */
+.word {
+  font-family: "Nunito", "Grandstander", "Arial Rounded MT Bold", sans-serif;
+  font-weight: 900;
+  color: #111;
+  line-height: 1;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
-/* Default to a single column on smaller screens */
-@media (min-width: 600px) {
-  .imageGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* worm peeks from behind the word */
+.wormSpot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* Add a max-height property to limit the number of rows */
-.imageGrid li {
-  overflow: hidden;
+/* worm fully visible when found */
+.wormVisible {
+  opacity: 1;
+  z-index: 10;
+}
+
+/* wiggle animation on encounter */
+.wiggle {
+  animation: wiggle 0.4s ease infinite alternate;
+}
+
+@keyframes wiggle {
+  0%   { transform: translate(-50%, -50%) rotate(-15deg) scale(1.3); }
+  100% { transform: translate(-50%, -50%) rotate(15deg) scale(1.4); }
 }
