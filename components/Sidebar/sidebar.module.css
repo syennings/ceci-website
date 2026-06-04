@@ -19,6 +19,7 @@
 
 .sidebarClosed {
   transform: translateX(-100%);
+  pointer-events: none; /* don't intercept clicks when hidden */
 }
 
 .bio {

@@ -23,13 +23,11 @@ export default function Sidebar({ isOpen }) {
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
-    // navigate to homepage with search query param
     router.push({ pathname: "/", query: { search: query, type: selectedType } });
   };
 
   const handleTypeChange = (type) => {
     setSelectedType(type);
-    // navigate to homepage with type query param
     router.push({ pathname: "/", query: { search: searchQuery, type } });
   };
 
