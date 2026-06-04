@@ -14,10 +14,12 @@ function generateLayout(hidingIndex) {
   const shuffled = [...WORDS].sort(() => Math.random() - 0.5);
   return shuffled.map((word, i) => ({
     word,
-    top: 5 + Math.random() * 78,
-    left: 2 + Math.random() * 65,
+    top: 2 + Math.random() * 90,
+    left: 2 + Math.random() * 80,
     rotation: -12 + Math.random() * 24,
-    fontSize: 20 + Math.floor(Math.random() * 140), // range: 20px–160px for strong contrast
+    fontSize: 14 + Math.floor(Math.random() * 100),
+    verticalOffset: -30 + Math.floor(Math.random() * 60), // random vertical nudge for flow layout
+    marginLeft: Math.floor(Math.random() * 20),
     isHiding: i === hidingIndex,
   }));
 }
@@ -58,42 +60,78 @@ export default function WormGame() {
     setTimeout(() => setupRound(), 2000);
   };
 
-  if (isLoading || !currentWorm || layout.length === 0) return null;
+  if (isLoading || !currentWorm || layout.length === 0) return <p>... opening a can of worms</p>;
 
   return (
     <div className={styles.game}>
-      {layout.map((item, i) => (
-        <div
-          key={i}
-          className={styles.wordWrapper}
-          style={{
-            top: `${item.top}%`,
-            left: `${item.left}%`,
-            transform: `rotate(${item.rotation}deg)`,
-            // hiding word always on top so worm is never blocked by other words
-            zIndex: item.isHiding ? 100 : 1,
-          }}
-          onClick={() => handleWordClick(i)}
-        >
-          {item.isHiding && (
-            <div
-              className={`${styles.wormSpot} ${found ? styles.wormVisible : ""} ${wiggling ? styles.wiggle : ""}`}
-              onClick={(e) => { e.stopPropagation(); handleWordClick(i); }}
-            >
-              <Image
-                src={currentWorm.url}
-                alt={currentWorm.label || "worm"}
-                width={80}
-                height={80}
-                style={{ objectFit: "contain", pointerEvents: "none" }}
-              />
-            </div>
-          )}
-          <span className={styles.word} style={{ fontSize: `${item.fontSize}px` }}>
-            {item.word}
+      {/* desktop: scattered absolute layout */}
+      <div className={styles.scattered}>
+        {layout.map((item, i) => (
+          <div
+            key={i}
+            className={styles.wordWrapper}
+            style={{
+              top: `${item.top}%`,
+              left: `${item.left}%`,
+              transform: `rotate(${item.rotation}deg)`,
+              zIndex: item.isHiding ? 100 : 1,
+            }}
+            onClick={() => handleWordClick(i)}
+          >
+            {item.isHiding && (
+              <div
+                className={`${styles.wormSpot} ${found ? styles.wormVisible : ""} ${wiggling ? styles.wiggle : ""}`}
+                onClick={(e) => { e.stopPropagation(); handleWordClick(i); }}
+              >
+                <Image
+                  src={currentWorm.url}
+                  alt={currentWorm.label || "worm"}
+                  width={80}
+                  height={80}
+                  style={{ objectFit: "contain", pointerEvents: "none" }}
+                />
+              </div>
+            )}
+            <span className={styles.word} style={{ fontSize: `${item.fontSize}px` }}>
+              {item.word}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* mobile: one big inline text block, words flow naturally */}
+      <div className={styles.flow}>
+        {layout.map((item, i) => (
+          <span
+            key={i}
+            className={styles.flowWord}
+            style={{
+              fontSize: `${item.fontSize}px`,
+              position: "relative",
+              top: `${item.verticalOffset}px`,
+              marginLeft: `${item.marginLeft}px`,
+              zIndex: item.isHiding ? 100 : 1,
+            }}
+            onClick={() => handleWordClick(i)}
+          >
+            {item.isHiding && (
+              <span
+                className={`${styles.wormSpot} ${found ? styles.wormVisible : ""} ${wiggling ? styles.wiggle : ""}`}
+                onClick={(e) => { e.stopPropagation(); handleWordClick(i); }}
+              >
+                <Image
+                  src={currentWorm.url}
+                  alt={currentWorm.label || "worm"}
+                  width={80}
+                  height={80}
+                  style={{ objectFit: "contain", pointerEvents: "none" }}
+                />
+              </span>
+            )}
+            {item.word}{" "}
           </span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
